@@ -1,0 +1,94 @@
+/* ==========================
+   MAIN LAYOUT
+========================== */
+
+.MainLayout{
+    display:flex;
+    width:100%;
+    min-height:100vh;
+    background:#f5f7fb;
+    overflow:hidden;
+}
+
+/* ==========================
+   RIGHT CONTENT
+========================== */
+
+.MainLayout-content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    margin-left:280px;
+    transition:.35s ease;
+    min-height:100vh;
+}
+
+.MainLayout-content.collapsed{
+    margin-left:90px;
+}
+
+/* ==========================
+   PAGE
+========================== */
+
+.MainLayout-page{
+    flex:1;
+    padding:30px;
+    overflow-y:auto;
+    background:#f5f7fb;
+}
+
+/* Scrollbar */
+
+.MainLayout-page::-webkit-scrollbar{
+    width:8px;
+}
+
+.MainLayout-page::-webkit-scrollbar-thumb{
+    background:#d8d8d8;
+    border-radius:20px;
+}
+
+/* ==========================
+   TABLETS
+========================== */
+
+@media(max-width:992px){
+
+.MainLayout-content{
+    margin-left:0;
+}
+
+.MainLayout-content.collapsed{
+    margin-left:0;
+}
+
+.MainLayout-page{
+    padding:22px;
+}
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.MainLayout-page{
+    padding:18px;
+}
+
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media(max-width:480px){
+
+.MainLayout-page{
+    padding:15px;
+}
+
+}

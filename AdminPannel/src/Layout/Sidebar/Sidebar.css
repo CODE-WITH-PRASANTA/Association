@@ -1,0 +1,239 @@
+/* ===================================
+SIDEBAR
+=================================== */
+
+.Sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:280px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    transition:.35s ease;
+    z-index:1000;
+    overflow:hidden;
+    box-shadow:0 0 30px rgba(0,0,0,.15);
+}
+
+/* Collapse */
+
+.Sidebar.collapsed{
+    width:90px;
+}
+
+/* ===================================
+LOGO
+=================================== */
+
+.Sidebar-logoSection{
+    height:85px;
+    display:flex;
+    align-items:center;
+    padding:0 22px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    position:relative;
+}
+
+.Sidebar-logo{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.Sidebar-logoTitle{
+    margin-left:15px;
+    font-size:22px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+/* ===================================
+MENU
+=================================== */
+
+.Sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    margin-top:25px;
+    gap:8px;
+    padding:0 14px;
+}
+
+.Sidebar-link{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    color:#cbd5e1;
+    padding:15px 16px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.Sidebar-link:hover{
+    background:#1e293b;
+    color:#fff;
+}
+
+.Sidebar-link.active{
+    background:#2563eb;
+    color:white;
+    box-shadow:0 10px 20px rgba(37,99,235,.3);
+}
+
+.Sidebar-icon{
+    min-width:48px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:21px;
+}
+
+.Sidebar-title{
+    margin-left:12px;
+    font-size:15px;
+    font-weight:500;
+    white-space:nowrap;
+}
+
+/* ===================================
+COLLAPSE
+=================================== */
+
+.Sidebar.collapsed .Sidebar-link{
+    justify-content:center;
+    padding:16px;
+}
+
+.Sidebar.collapsed .Sidebar-logoSection{
+    justify-content:center;
+    padding:0;
+}
+
+.Sidebar.collapsed .Sidebar-logo{
+    width:50px;
+}
+
+/* ===================================
+SCROLL
+=================================== */
+
+.Sidebar-menu{
+    overflow-y:auto;
+}
+
+.Sidebar-menu::-webkit-scrollbar{
+    width:5px;
+}
+
+.Sidebar-menu::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:20px;
+}
+
+/* ===================================
+MOBILE
+=================================== */
+
+.Sidebar-close{
+    display:none;
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* Overlay */
+
+.Sidebar-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:999;
+}
+
+.Sidebar-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+/* ===================================
+TABLET
+=================================== */
+
+@media(max-width:992px){
+
+.Sidebar{
+    transform:translateX(-100%);
+    width:280px;
+}
+
+.Sidebar.mobile-open{
+    transform:translateX(0);
+}
+
+.Sidebar.collapsed{
+    width:280px;
+}
+
+.Sidebar-close{
+    display:block;
+}
+
+}
+
+/* ===================================
+MOBILE
+=================================== */
+
+@media(max-width:768px){
+
+.Sidebar{
+    width:260px;
+}
+
+.Sidebar-logoTitle{
+    font-size:20px;
+}
+
+.Sidebar-title{
+    font-size:14px;
+}
+
+.Sidebar-icon{
+    font-size:19px;
+}
+
+}
+
+/* ===================================
+SMALL MOBILE
+=================================== */
+
+@media(max-width:480px){
+
+.Sidebar{
+    width:240px;
+}
+
+.Sidebar-logo{
+    width:42px;
+    height:42px;
+}
+
+.Sidebar-logoTitle{
+    font-size:18px;
+}
+
+}
