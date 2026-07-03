@@ -1,0 +1,957 @@
+/* ===========================================================
+   HERO SECTION
+=========================================================== */
+
+.HeroSection {
+
+     min-height:90vh;
+    padding:130px 7% 60px;
+    display:flex;
+    align-items:center;
+
+  width: 100%;
+ 
+  background: #ecf0f3;
+  display: flex;
+  
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.HeroSection-container {
+  width: 100%;
+  max-width: 1450px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ===========================================================
+   LEFT
+=========================================================== */
+
+.HeroSection-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.HeroSection-subtitle {
+  font-size: 17px;
+  letter-spacing: 6px;
+  color: #545961;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.HeroSection-title {
+  font-size: 74px;
+  font-weight: 800;
+  color: #1f2128;
+  line-height: 1.15;
+}
+
+.HeroSection-title span {
+  color: #ff014f;
+}
+
+.HeroSection-designation {
+  font-size: 72px;
+  font-weight: 800;
+  color: #1f2128;
+  line-height: 1.18;
+  margin-top: 10px;
+}
+
+.HeroSection-description {
+  margin-top: 40px;
+  max-width: 720px;
+  font-size: 21px;
+  line-height: 1.9;
+  color: #5c6270;
+}
+
+/* ===========================================================
+   BOTTOM
+=========================================================== */
+
+.HeroSection-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 70px;
+  margin-top: 35px;
+}
+
+.HeroSection-social,
+.HeroSection-skills {
+  display: flex;
+  flex-direction: column;
+}
+
+.HeroSection-social h5,
+.HeroSection-skills h5 {
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: #1f2128;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.HeroSection-socialIcons,
+.HeroSection-skillIcons {
+  display: flex;
+  gap: 22px;
+}
+
+/* ===========================================================
+   ICON BOX
+=========================================================== */
+
+.HeroSection-socialIcons a,
+.HeroSection-skillIcons div {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  background: #ecf0f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #3d4048;
+  font-size: 28px;
+  cursor: pointer;
+
+  box-shadow:
+    12px 12px 25px rgba(163, 177, 198, 0.45),
+    -12px -12px 25px rgba(255, 255, 255, 0.95);
+
+  transition: all .45s ease;
+}
+
+/* ===========================================================
+   RIGHT
+=========================================================== */
+
+.HeroSection-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeroSection-imageWrapper {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.HeroSection-imageCard {
+
+     width:470px;
+    max-width:100%;
+    padding:15px;
+
+  position: relative;
+  
+  border-radius: 12px;
+
+  background: #ecf0f3;
+
+  box-shadow:
+    18px 18px 45px rgba(163, 177, 198, 0.45),
+    -18px -18px 45px rgba(255, 255, 255, 0.95);
+}
+
+.HeroSection-image {
+  width: 100%;
+  height: 500px;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ===========================================================
+   PLAY BUTTON
+=========================================================== */
+
+.HeroSection-playButton {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 110px;
+  height: 110px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 50%;
+  cursor: pointer;
+
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 42px;
+  color: #444;
+
+  transition: .45s;
+}
+
+.HeroSection-playButton svg{
+  margin-left:6px;
+}
+
+/* ===========================================================
+   FLOATING DEMO
+=========================================================== */
+
+.HeroSection-demoButton {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  padding: 16px 0;
+  border-radius: 10px;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  color: #ff014f;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+  box-shadow:
+    12px 12px 30px rgba(163,177,198,.35),
+   -12px -12px 30px rgba(255,255,255,.9);
+
+  z-index: 100;
+}
+
+/* ===========================================================
+   VIDEO MODAL
+=========================================================== */
+
+.HeroSection-videoModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.78);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.HeroSection-videoBox {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  aspect-ratio: 16/9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+}
+
+.HeroSection-closeButton {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #ff014f;
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 18px;
+}
+/* ===========================================================
+   HERO IMAGE ANIMATION
+=========================================================== */
+
+.HeroSection-imageCard{
+    animation: HeroSectionFloat 6s ease-in-out infinite;
+    transition: all .5s ease;
+}
+
+
+
+.HeroSection-image{
+
+    transition:.6s;
+
+}
+
+
+
+/* ===========================================================
+   PLAY BUTTON
+=========================================================== */
+
+.HeroSection-playButton{
+
+    overflow:hidden;
+
+    box-shadow:
+
+    0 0 0 rgba(255,1,79,.25);
+
+    animation:HeroSectionPulse 2.2s infinite;
+
+}
+
+.HeroSection-playButton::before{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.18);
+
+transform:scale(0);
+
+transition:.45s;
+
+}
+
+.HeroSection-playButton:hover{
+
+background:#ff014f;
+
+color:#fff;
+
+transform:translate(-50%,-50%) scale(1.08);
+
+}
+
+.HeroSection-playButton:hover::before{
+
+transform:scale(2.2);
+
+opacity:0;
+
+}
+
+@keyframes HeroSectionPulse{
+
+0%{
+
+box-shadow:0 0 0 0 rgba(255,1,79,.35);
+
+}
+
+70%{
+
+box-shadow:0 0 0 28px rgba(255,1,79,0);
+
+}
+
+100%{
+
+box-shadow:0 0 0 0 rgba(255,1,79,0);
+
+}
+
+}
+
+/* ===========================================================
+   SOCIAL ICONS
+=========================================================== */
+
+.HeroSection-socialIcons a{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.HeroSection-socialIcons a::before{
+
+content:"";
+
+position:absolute;
+
+left:-100%;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.4),
+transparent
+);
+
+transition:.6s;
+
+}
+
+.HeroSection-socialIcons a:hover::before{
+
+left:120%;
+
+}
+
+.HeroSection-socialIcons a:hover{
+
+transform:translateY(-10px);
+
+background:#ff014f;
+
+color:#fff;
+
+box-shadow:
+
+0 20px 35px rgba(255,1,79,.25);
+
+}
+
+/* ===========================================================
+   SKILL ICONS
+=========================================================== */
+
+.HeroSection-skillIcons div{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.HeroSection-skillIcons div::after{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+background:linear-gradient(
+
+135deg,
+
+transparent,
+
+rgba(255,255,255,.45),
+
+transparent
+
+);
+
+left:-100%;
+
+transition:.6s;
+
+}
+
+.HeroSection-skillIcons div:hover::after{
+
+left:120%;
+
+}
+
+.HeroSection-skillIcons div:hover{
+
+transform:
+
+translateY(-10px)
+rotate(-4deg);
+
+background:#ff014f;
+
+color:#fff;
+
+box-shadow:
+
+0 20px 40px rgba(255,1,79,.25);
+
+}
+
+/* ===========================================================
+   TEXT ANIMATION
+=========================================================== */
+
+.HeroSection-subtitle{
+
+opacity:0;
+
+animation:HeroSectionFade .8s forwards;
+
+}
+
+.HeroSection-title{
+
+opacity:0;
+
+animation:HeroSectionFade .8s .2s forwards;
+
+}
+
+.HeroSection-designation{
+
+opacity:0;
+
+animation:HeroSectionFade .8s .4s forwards;
+
+}
+
+.HeroSection-description{
+
+opacity:0;
+
+animation:HeroSectionFade .8s .6s forwards;
+
+}
+
+.HeroSection-bottom{
+
+opacity:0;
+
+animation:HeroSectionFade .8s .8s forwards;
+
+}
+
+.HeroSection-right{
+
+opacity:0;
+
+animation:HeroSectionFade .8s 1s forwards;
+
+}
+
+@keyframes HeroSectionFade{
+
+from{
+
+opacity:0;
+
+transform:translateY(45px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================================================
+   HEADING EFFECT
+=========================================================== */
+
+.HeroSection-title span{
+    color:#ff014f;
+}
+/* ===========================================================
+   DESCRIPTION
+=========================================================== */
+
+.HeroSection-description{
+
+transition:.4s;
+
+}
+
+.HeroSection-left:hover .HeroSection-description{
+
+color:#444;
+
+}
+
+/* ===========================================================
+   DEMO BUTTON
+=========================================================== */
+
+.HeroSection-demoButton{
+
+cursor:pointer;
+
+transition:.45s;
+
+}
+
+.HeroSection-demoButton:hover{
+
+transform:
+
+translateY(-50%)
+translateX(-8px);
+
+background:#ff014f;
+
+color:#fff;
+
+box-shadow:
+
+0 18px 35px rgba(255,1,79,.3);
+
+}
+
+.HeroSection-demoButton span{
+
+transition:.35s;
+
+}
+
+.HeroSection-demoButton:hover span{
+
+transform:scale(1.15);
+
+}
+
+/* ===========================================================
+   IMAGE GLOW
+=========================================================== */
+
+.HeroSection-imageWrapper{
+
+position:relative;
+
+}
+
+.HeroSection-imageWrapper::before{
+
+content:"";
+
+position:absolute;
+
+width:280px;
+
+height:280px;
+
+background:radial-gradient(
+
+rgba(255,1,79,.12),
+
+transparent 70%
+
+);
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+border-radius:50%;
+
+filter:blur(35px);
+
+z-index:-1;
+
+animation:HeroSectionGlow 6s linear infinite;
+
+}
+
+@keyframes HeroSectionGlow{
+
+0%{
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+50%{
+
+transform:translate(-50%,-50%) scale(1.12);
+
+}
+
+100%{
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+}
+
+/* ===========================================================
+   SCROLL INDICATOR
+=========================================================== */
+
+.HeroSection::after{
+
+content:"";
+
+position:absolute;
+
+bottom:0;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:88%;
+
+height:1px;
+
+background:rgba(0,0,0,.08);
+
+}
+/* ===========================================================
+   1600px
+=========================================================== */
+
+@media (max-width:1600px){
+
+.HeroSection{
+
+padding:150px 6% 90px;
+
+}
+
+.HeroSection-title{
+
+font-size:66px;
+
+}
+
+.HeroSection-designation{
+
+font-size:64px;
+
+}
+
+.HeroSection-description{
+
+font-size:19px;
+
+}
+
+.HeroSection-imageCard{
+
+width:560px;
+
+}
+
+}
+
+/* ===========================================================
+   1400px
+=========================================================== */
+
+/* ===========================
+   Laptop
+=========================== */
+
+@media (max-width:1200px){
+
+.HeroSection{
+
+padding:120px 5% 70px;
+
+}
+
+.HeroSection-container{
+
+grid-template-columns:1fr;
+gap:60px;
+
+}
+
+.HeroSection-left{
+
+order:1;
+
+text-align:center;
+align-items:center;
+
+}
+
+.HeroSection-right{
+
+order:2;
+
+display:flex;
+justify-content:center;
+
+}
+
+.HeroSection-bottom{
+
+justify-content:center;
+flex-wrap:wrap;
+gap:50px;
+
+}
+
+.HeroSection-imageCard{
+
+width:420px;
+
+}
+
+.HeroSection-demoButton{
+
+display:none;
+
+}
+
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width:768px){
+
+.HeroSection{
+
+padding:110px 20px 60px;
+
+min-height:auto;
+
+}
+
+
+.HeroSection-title{
+
+font-size:42px;
+
+}
+
+.HeroSection-designation{
+
+font-size:38px;
+
+}
+
+.HeroSection-description{
+
+font-size:16px;
+line-height:1.8;
+
+}
+
+.HeroSection-bottom{
+
+flex-direction:column;
+align-items:center;
+gap:35px;
+
+}
+
+.HeroSection-socialIcons a,
+.HeroSection-skillIcons div{
+
+width:58px;
+height:58px;
+font-size:22px;
+
+}
+
+.HeroSection-imageCard{
+
+width:100%;
+max-width:360px;
+
+}
+
+.HeroSection-playButton{
+
+width:80px;
+height:80px;
+font-size:26px;
+
+}
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width:480px){
+
+.HeroSection{
+
+padding:100px 16px 50px;
+
+}
+
+.HeroSection-subtitle{
+
+font-size:12px;
+letter-spacing:3px;
+
+}
+
+.HeroSection-title{
+
+font-size:32px;
+
+}
+
+.HeroSection-designation{
+
+font-size:30px;
+
+}
+
+.HeroSection-description{
+
+font-size:15px;
+
+}
+
+.HeroSection-imageCard{
+
+max-width:300px;
+
+}
+
+.HeroSection-socialIcons,
+.HeroSection-skillIcons{
+
+gap:12px;
+
+}
+
+.HeroSection-socialIcons a,
+.HeroSection-skillIcons div{
+
+width:50px;
+height:50px;
+font-size:18px;
+
+}
+
+.HeroSection-playButton{
+
+width:65px;
+height:65px;
+font-size:20px;
+
+}
+
+}

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import "./Navbar.css";
 
-import Logo from "../../assets/logo.jpeg"; // Change path
+import Logo from "../../assets/logo-3.png"; // Change path
 
 const Navbar = () => {
   const [sticky, setSticky] = useState(false);
@@ -79,20 +79,16 @@ const Navbar = () => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/contact" onClick={()=>setMobileMenu(false)}>
-                Contact
-              </NavLink>
-            </li>
+            
 
             <li className="Navbar-mobile-btn">
 
               <NavLink
-                to="/buy-now"
+                to="/contact"
                 className="Navbar-buyBtn"
                 onClick={()=>setMobileMenu(false)}
               >
-                BUY NOW
+               Contact us
               </NavLink>
 
             </li>
@@ -101,8 +97,8 @@ const Navbar = () => {
 
           {/* Desktop Button */}
 
-          <NavLink to="/buy-now" className="Navbar-buyBtn Navbar-desktop-btn">
-            BUY NOW
+          <NavLink to="/contact" className="Navbar-buyBtn Navbar-desktop-btn">
+           Contact Us
           </NavLink>
 
           {/* Mobile */}
