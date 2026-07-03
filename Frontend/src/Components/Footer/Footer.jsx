@@ -119,7 +119,7 @@ const Footer = () => {
       <div className="Footer-bottom">
 
         <p>
-          © {new Date().getFullYear()} Your Website. All Rights Reserved.
+         © 2026 Developed by PR WEBSTOCK
         </p>
 
         <button

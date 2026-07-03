@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {
   FaFacebookF,
   FaInstagram,
-  FaLinkedinIn,
+ 
+  FaYoutube,
   FaPlay,
   FaTimes,
   
@@ -71,7 +72,7 @@ const HeroSection = () => {
                   </a>
 
                   <a href="/">
-                    <FaLinkedinIn />
+                    <FaYoutube />
                   </a>
 
                 </div>
