@@ -1,0 +1,363 @@
+.Footer{
+    background:#ECF0F3;
+    padding:90px 7% 30px;
+    border-top:1px solid rgba(0,0,0,.08);
+}
+
+/*==============================*/
+
+.Footer-container{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1.4fr;
+    gap:60px;
+}
+
+/*==============================*/
+
+.Footer-about{
+    display:flex;
+    flex-direction:column;
+}
+
+.Footer-logo{
+    width:190px;
+    margin-bottom:25px;
+    transition:.5s;
+}
+
+.Footer-logo:hover{
+    transform:scale(1.06);
+}
+
+.Footer-about p{
+    color:#5b6470;
+    line-height:1.9;
+    font-size:15px;
+}
+
+/*==============================*/
+
+.Footer-socials{
+    display:flex;
+    gap:18px;
+    margin-top:35px;
+}
+
+.Footer-socials a{
+
+    width:55px;
+    height:55px;
+
+    border-radius:16px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#ECF0F3;
+
+    color:#ff014f;
+
+    font-size:18px;
+
+    text-decoration:none;
+
+    box-shadow:
+    8px 8px 18px rgba(163,177,198,.6),
+   -8px -8px 18px rgba(255,255,255,.9);
+
+    transition:.45s;
+}
+
+.Footer-socials a:hover{
+
+    transform:translateY(-8px);
+
+    color:#fff;
+
+    background:#ff014f;
+
+    box-shadow:0 15px 30px rgba(255,1,79,.35);
+
+}
+
+/*==============================*/
+
+.Footer-links h3,
+.Footer-contact h3{
+
+    font-size:21px;
+    margin-bottom:25px;
+    color:#2f3136;
+    position:relative;
+}
+
+.Footer-links h3::after,
+.Footer-contact h3::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:45px;
+    height:3px;
+
+    background:#ff014f;
+
+    left:0;
+    bottom:-10px;
+
+    border-radius:20px;
+}
+
+/*==============================*/
+
+.Footer-links{
+    display:flex;
+    flex-direction:column;
+}
+
+.Footer-links a{
+
+    margin-bottom:16px;
+
+    text-decoration:none;
+
+    color:#5c6472;
+
+    transition:.35s;
+
+    position:relative;
+
+    width:fit-content;
+
+}
+
+.Footer-links a::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-2px;
+
+    width:0;
+
+    height:2px;
+
+    background:#ff014f;
+
+    transition:.35s;
+
+}
+
+.Footer-links a:hover{
+
+    color:#ff014f;
+
+    padding-left:8px;
+
+}
+
+.Footer-links a:hover::before{
+
+    width:100%;
+
+}
+
+/*==============================*/
+
+.Footer-contact p{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    margin-bottom:22px;
+
+    color:#5d6672;
+
+    line-height:1.8;
+
+}
+
+.Footer-contact svg{
+
+    color:#ff014f;
+
+    margin-top:5px;
+
+    min-width:18px;
+
+}
+
+/*==============================*/
+
+.Footer-bottom{
+
+    margin-top:70px;
+
+    padding-top:25px;
+
+    border-top:1px solid rgba(0,0,0,.08);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.Footer-bottom p{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+
+/*==============================*/
+
+.Footer-scrollTop{
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:18px;
+
+    color:#ff014f;
+
+    font-size:20px;
+
+    background:#ECF0F3;
+
+    box-shadow:
+    8px 8px 18px rgba(163,177,198,.6),
+   -8px -8px 18px rgba(255,255,255,.9);
+
+    transition:.45s;
+
+}
+
+.Footer-scrollTop:hover{
+
+    background:#ff014f;
+
+    color:#fff;
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(255,1,79,.35);
+
+}
+
+/*==============================*/
+
+@media(max-width:1100px){
+
+.Footer-container{
+
+grid-template-columns:1fr 1fr;
+
+gap:50px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.Footer{
+
+padding:70px 25px 25px;
+
+}
+
+.Footer-container{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.Footer-about{
+
+align-items:center;
+
+}
+
+.Footer-links{
+
+align-items:center;
+
+}
+
+.Footer-links h3::after,
+.Footer-contact h3::after{
+
+left:50%;
+
+transform:translateX(-50%);
+
+}
+
+.Footer-contact p{
+
+justify-content:center;
+
+}
+
+.Footer-socials{
+
+justify-content:center;
+
+}
+
+.Footer-bottom{
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.Footer-logo{
+
+width:160px;
+
+}
+
+.Footer-socials a{
+
+width:50px;
+
+height:50px;
+
+font-size:16px;
+
+}
+
+.Footer-scrollTop{
+
+width:52px;
+
+height:52px;
+
+}
+
+}
