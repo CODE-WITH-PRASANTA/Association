@@ -479,6 +479,8 @@
     padding: 10px;
   }
   .authority__badges {
+  width: 350px;
+
     grid-template-columns: 1fr;
   }
   .authority__chakra {
