@@ -1,0 +1,956 @@
+/*=========================================================
+                EVENT MANAGEMENT
+=========================================================*/
+
+.EventManagement {
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f7fb;
+    padding: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+/*=========================================================
+                    SCROLLBAR
+=========================================================*/
+
+.EventManagement::-webkit-scrollbar {
+    width: 7px;
+}
+
+.EventManagement::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 20px;
+}
+
+.EventManagement::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/*=========================================================
+                    WRAPPER
+=========================================================*/
+
+.EventManagement-wrapper{
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.EventManagement-formCard,
+.EventManagement-tableCard{
+    flex:1;
+    min-width:0;
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+}
+/*=========================================================
+                    LEFT FORM
+=========================================================*/
+
+.EventManagement-formCard{
+
+flex:1;
+
+max-height:calc(100dvh - 140px);
+
+overflow-y:auto;
+
+}
+
+
+.EventManagement-formCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 45px rgba(0,0,0,.12);
+}
+
+/*=========================================================
+                    RIGHT TABLE
+=========================================================*/
+
+.EventManagement-tableCard {
+    width: 50%;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    border: 1px solid #edf0f5;
+    transition: .35s;
+}
+
+.EventManagement-tableCard:hover{
+    transform: translateY(-3px);
+    box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+
+.EventManagement-formCard::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+.EventManagement-formCard::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+.EventManagement-formCard::-webkit-scrollbar-track{
+
+    background:#f2f2f2;
+
+}
+/*=========================================================
+                    CARD HEADER
+=========================================================*/
+
+.EventManagement-cardHeader{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:30px;
+    border-bottom:1px solid #ececec;
+    padding-bottom:18px;
+}
+
+.EventManagement-cardHeader svg{
+    width:45px;
+    height:45px;
+    background:#2563eb;
+    color:#fff;
+    padding:12px;
+    border-radius:12px;
+    box-sizing:border-box;
+}
+
+.EventManagement-cardHeader h2{
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+    color:#222;
+}
+
+/*=========================================================
+                    FORM
+=========================================================*/
+
+.EventManagement-form{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+/*=========================================================
+                    FORM GROUP
+=========================================================*/
+
+.EventManagement-formGroup{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.EventManagement-formGroup label{
+    font-size:15px;
+    font-weight:600;
+    color:#333;
+    letter-spacing:.2px;
+}
+
+/*=========================================================
+                    INPUT
+=========================================================*/
+
+.EventManagement-formGroup input{
+    width:100%;
+    height:52px;
+    border:1px solid #d8dee8;
+    border-radius:12px;
+    padding:0 18px;
+    outline:none;
+    font-size:15px;
+    transition:.3s;
+    background:#fafcff;
+    box-sizing:border-box;
+}
+
+.EventManagement-formGroup input:focus{
+    border-color:#2563eb;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+/*=========================================================
+                    SELECT
+=========================================================*/
+
+.EventManagement-formGroup select{
+    width:100%;
+    height:52px;
+    border:1px solid #d8dee8;
+    border-radius:12px;
+    padding:0 18px;
+    outline:none;
+    font-size:15px;
+    background:#fafcff;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.EventManagement-formGroup select:focus{
+    border-color:#2563eb;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+/*=========================================================
+                PLACEHOLDER
+=========================================================*/
+
+.EventManagement-formGroup input::placeholder{
+    color:#9ca3af;
+}
+
+/*=========================================================
+                IMAGE UPLOAD
+=========================================================*/
+
+.EventManagement-upload{
+    width:100%;
+}
+
+.EventManagement-uploadBox{
+    width:100%;
+    height:180px;
+    border:2px dashed #2563eb;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    transition:.35s;
+    background:#f7faff;
+    overflow:hidden;
+    position:relative;
+}
+
+.EventManagement-uploadBox:hover{
+    background:#eef5ff;
+    transform:translateY(-2px);
+}
+
+.EventManagement-uploadBox svg{
+    font-size:50px;
+    color:#2563eb;
+}
+
+.EventManagement-uploadBox span{
+    font-size:16px;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.EventManagement-uploadBox input{
+    display:none;
+}
+
+/*=========================================================
+                IMAGE PREVIEW
+=========================================================*/
+
+.EventManagement-imagePreview{
+    width:100%;
+    height:240px;
+    overflow:hidden;
+    border-radius:15px;
+    border:1px solid #dfe4ea;
+    background:#fff;
+}
+
+.EventManagement-imagePreview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/*=========================================================
+                    TINYMCE
+=========================================================*/
+
+.tox-tinymce{
+    border-radius:14px !important;
+    overflow:hidden;
+    border:1px solid #dbe2ea !important;
+}
+
+.tox .tox-toolbar,
+.tox .tox-toolbar__primary{
+    background:#f8f9fc !important;
+}
+
+.tox-statusbar{
+    border-top:1px solid #ececec !important;
+}
+
+.tox-edit-area{
+    background:#fff !important;
+}
+
+.EventManagement-formCard{
+    width:50%;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    height:90vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.EventManagement-formCard::-webkit-scrollbar{
+    width:6px;
+}
+
+.EventManagement-formCard::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+
+.EventManagement-formCard::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+/*=========================================================
+                SUBMIT BUTTON
+=========================================================*/
+
+.EventManagement-submitBtn{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:.35s;
+    margin-top:10px;
+}
+.EventManagement-formCard{
+    width:50%;
+    height:90vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.EventManagement-formCard::-webkit-scrollbar{
+    width:6px;
+}
+
+.EventManagement-formCard::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+.EventManagement-submitBtn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(37,99,235,.30);
+}
+
+.EventManagement-submitBtn svg{
+    font-size:18px;
+}
+/*=========================================================
+                    TABLE WRAPPER
+=========================================================*/
+
+.EventManagement-tableWrapper{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:auto;
+    max-height:650px;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    background:#fff;
+}
+
+.EventManagement-tableWrapper::-webkit-scrollbar{
+    width:7px;
+    height:7px;
+}
+
+.EventManagement-tableWrapper::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+
+.EventManagement-tableWrapper::-webkit-scrollbar-track{
+    background:#f5f5f5;
+}
+
+/*=========================================================
+                        TABLE
+=========================================================*/
+
+.EventManagement-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+}
+
+/*=========================================================
+                        TABLE HEAD
+=========================================================*/
+
+.EventManagement-table thead{
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.EventManagement-table thead tr{
+    background:#2563eb;
+}
+
+.EventManagement-table th{
+    padding:16px;
+    color:#fff;
+    font-size:14px;
+    font-weight:600;
+    text-align:center;
+    white-space:nowrap;
+}
+/*=====================================
+        FILE INPUT
+======================================*/
+
+.EventManagement-fileInput{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid #d8dee8;
+    border-radius:10px;
+    background:#fff;
+    font-size:15px;
+    cursor:pointer;
+    box-sizing:border-box;
+}
+
+.EventManagement-fileInput:hover{
+    border-color:#2563eb;
+}
+
+.EventManagement-fileInput:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+.EventManagement-fileInput::file-selector-button{
+
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-right:15px;
+
+}
+
+.EventManagement-fileInput::file-selector-button:hover{
+    background:#1d4ed8;
+}
+/*=========================================================
+                        TABLE BODY
+=========================================================*/
+
+.EventManagement-table tbody tr{
+    transition:.3s;
+    border-bottom:1px solid #edf2f7;
+}
+
+.EventManagement-table tbody tr:nth-child(even){
+    background:#fafbfc;
+}
+
+.EventManagement-table tbody tr:hover{
+    background:#eef5ff;
+}
+
+.EventManagement-table td{
+    padding:15px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:14px;
+    color:#444;
+}
+
+/*=========================================================
+                    SERIAL NUMBER
+=========================================================*/
+
+.EventManagement-table td:first-child{
+    font-weight:700;
+    color:#2563eb;
+}
+
+/*=========================================================
+                    IMAGE
+=========================================================*/
+
+.EventManagement-tableImage{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid #dbe4ef;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.EventManagement-tableImage:hover{
+    transform:scale(1.08);
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+
+/*=========================================================
+                        TITLE
+=========================================================*/
+
+.EventManagement-table td:nth-child(3){
+    min-width:180px;
+    font-weight:600;
+    color:#1f2937;
+}
+
+/*=========================================================
+                        CATEGORY
+=========================================================*/
+
+.EventManagement-table td:nth-child(4){
+    min-width:140px;
+    font-weight:600;
+    color:#2563eb;
+}
+
+/*=========================================================
+                    DESCRIPTION
+=========================================================*/
+
+.EventManagement-description{
+    width:240px;
+    max-height:90px;
+    overflow:hidden;
+    text-align:left;
+    font-size:13px;
+    line-height:1.7;
+    color:#555;
+    margin:auto;
+}
+
+.EventManagement-description p{
+    margin:0;
+}
+
+.EventManagement-description img{
+    display:none;
+}
+
+.EventManagement-description table{
+    display:none;
+}
+
+.EventManagement-description iframe{
+    display:none;
+}
+
+/*=========================================================
+                        DATE
+=========================================================*/
+
+.EventManagement-table td:nth-child(6){
+    white-space:nowrap;
+    color:#666;
+}
+
+/*=========================================================
+                    ACTION BUTTONS
+=========================================================*/
+
+.EventManagement-actionButtons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+/*=========================================================
+                        EDIT BUTTON
+=========================================================*/
+
+.editBtn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:#10b981;
+    color:#fff;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+    font-size:15px;
+}
+
+.editBtn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 18px rgba(16,185,129,.35);
+    background:#059669;
+}
+
+/*=========================================================
+                    DELETE BUTTON
+=========================================================*/
+
+.deleteBtn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:#fff;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+    font-size:15px;
+}
+
+.deleteBtn:hover{
+    transform:translateY(-3px);
+    background:#dc2626;
+    box-shadow:0 10px 18px rgba(239,68,68,.35);
+}
+
+/*=========================================================
+                    EMPTY DATA
+=========================================================*/
+
+.EventManagement-noData{
+    padding:45px !important;
+    text-align:center;
+    font-size:16px;
+    color:#9ca3af;
+    font-weight:600;
+}
+
+/*=========================================================
+                    PAGINATION
+=========================================================*/
+
+.EventManagement-pagination{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.EventManagement-pagination button{
+    min-width:42px;
+    height:42px;
+    border:none;
+    border-radius:10px;
+    background:#eef2ff;
+    color:#2563eb;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    padding:0 15px;
+}
+
+.EventManagement-pagination button:hover:not(:disabled){
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.EventManagement-pagination button.active{
+    background:#2563eb;
+    color:#fff;
+    box-shadow:0 10px 18px rgba(37,99,235,.30);
+}
+
+.EventManagement-pagination button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+/*=========================================================
+                    TABLE ANIMATION
+=========================================================*/
+
+.EventManagement-table tbody tr{
+    animation:fadeRow .35s ease;
+}
+
+@keyframes fadeRow{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+/*==========================
+    1200px
+==========================*/
+
+@media (max-width:1200px){
+
+.EventManagement-wrapper{
+    flex-direction:column;
+}
+
+.EventManagement-formCard,
+.EventManagement-tableCard{
+    width:100%;
+}
+
+.EventManagement-formCard{
+    height:75vh;
+    overflow-y:auto;
+}
+
+.EventManagement-table{
+    min-width:950px;
+}
+
+}
+
+/*==========================
+    768px
+==========================*/
+
+/*=========================================================
+                    MOBILE VIEW
+=========================================================*/
+
+@media (max-width:768px){
+
+.EventManagement{
+    padding:12px;
+}
+
+.EventManagement-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.EventManagement-formCard,
+.EventManagement-tableCard{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+}
+
+/* Form Scroll */
+
+.EventManagement-formCard{
+    max-height:75vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+}
+
+.EventManagement-formCard::-webkit-scrollbar{
+    width:5px;
+}
+
+.EventManagement-formCard::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+
+/* Header */
+
+.EventManagement-cardHeader{
+    margin-bottom:15px;
+    padding-bottom:12px;
+}
+
+.EventManagement-cardHeader h2{
+    font-size:20px;
+}
+
+.EventManagement-cardHeader svg{
+    width:38px;
+    height:38px;
+    padding:9px;
+}
+
+/* Form */
+
+.EventManagement-form{
+    gap:15px;
+}
+
+.EventManagement-formGroup label{
+    font-size:14px;
+}
+
+.EventManagement-formGroup input,
+.EventManagement-formGroup select,
+.EventManagement-fileInput{
+    width:100%;
+    height:45px;
+    font-size:14px;
+    padding:0 14px;
+}
+
+/* TinyMCE */
+
+.tox,
+.tox-tinymce{
+    width:100% !important;
+    max-width:100% !important;
+}
+
+.tox-tinymce{
+    min-height:220px !important;
+}
+
+.tox-editor-header{
+    flex-wrap:wrap !important;
+}
+
+.tox-toolbar{
+    overflow-x:auto !important;
+}
+
+.tox-toolbar__primary{
+    flex-wrap:wrap !important;
+}
+
+/* Button */
+
+.EventManagement-submitBtn{
+    height:48px;
+    font-size:14px;
+}
+
+/* Table */
+
+.EventManagement-tableWrapper{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:auto;
+}
+
+.EventManagement-table{
+    min-width:850px;
+}
+
+.EventManagement-tableImage{
+    width:55px;
+    height:55px;
+}
+
+/* Pagination */
+
+.EventManagement-pagination{
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+.EventManagement-pagination button{
+    min-width:36px;
+    height:36px;
+    font-size:12px;
+    padding:0 10px;
+}
+
+}
+/*==========================
+    480px
+==========================*/
+
+@media (max-width:480px){
+
+.EventManagement{
+    padding:8px;
+}
+
+.EventManagement-formCard,
+.EventManagement-tableCard{
+    padding:12px;
+}
+
+.EventManagement-formCard{
+
+    height:78vh;
+
+}
+
+.EventManagement-cardHeader h2{
+    font-size:18px;
+}
+
+.EventManagement-cardHeader svg{
+    width:35px;
+    height:35px;
+}
+
+.EventManagement-formGroup input,
+.EventManagement-formGroup select,
+.EventManagement-fileInput{
+
+    height:42px;
+    font-size:13px;
+
+}
+
+.tox-tinymce{
+    min-height:180px!important;
+}
+
+.EventManagement-submitBtn{
+
+    height:44px;
+    font-size:13px;
+
+}
+
+.EventManagement-table{
+
+    min-width:760px;
+
+}
+
+.EventManagement-pagination{
+
+    justify-content:center;
+    flex-wrap:wrap;
+
+}
+
+}
