@@ -1,0 +1,242 @@
+/* Base Layout Configurations */
+.ContactPosting {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ContactPosting-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* Common Card Styles */
+.ContactPosting-formCard,
+.ContactPosting-tableCard {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+/* Explicit 50% split for parent grids */
+.ContactPosting-formCard {
+  width: 50%;
+}
+
+.ContactPosting-tableCard {
+  width: 50%;
+}
+
+.ContactPosting-heading {
+  font-size: 1.4rem;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 10px;
+}
+
+/* Input Form Controls */
+.ContactPosting-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ContactPosting-inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ContactPosting-inputGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.ContactPosting-inputGroup input,
+.ContactPosting-inputGroup textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #2d3748;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.ContactPosting-inputGroup input:focus,
+.ContactPosting-inputGroup textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.ContactPosting-inputGroup textarea {
+  resize: vertical;
+}
+
+/* Button Configurations */
+.ContactPosting-submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #4f46e5;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 5px;
+}
+
+.ContactPosting-submitBtn:hover {
+  background-color: #4338ca;
+}
+
+/* Layout Management: Table Rules */
+.ContactPosting-tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ContactPosting-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.ContactPosting-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.ContactPosting-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+}
+
+.ContactPosting-noData {
+  text-align: center;
+  color: #a0aec0;
+  padding: 30px !important;
+}
+
+/* Contextual Table Content styling */
+.ContactPosting-cellMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ContactPosting-cellMeta strong {
+  color: #1a202c;
+  font-size: 0.95rem;
+}
+
+.ContactPosting-cellMeta span {
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.ContactPosting-cellMessage strong {
+  display: block;
+  color: #2d3748;
+  margin-bottom: 4px;
+}
+
+.ContactPosting-cellMessage p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  max-width: 250px;
+}
+
+/* Table Actions Custom Layout */
+.ContactPosting-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ContactPosting-actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+
+.ContactPosting-actionBtn.edit {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.ContactPosting-actionBtn.edit:hover {
+  background-color: #fef08a;
+}
+
+.ContactPosting-actionBtn.delete {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.ContactPosting-actionBtn.delete:hover {
+  background-color: #fecaca;
+}
+
+/* ================= Media Queries for Responsiveness ================= */
+
+/* Tablet and Smaller Screen break */
+@media (max-width: 992px) {
+  .ContactPosting-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .ContactPosting-formCard,
+  .ContactPosting-tableCard {
+    width: 100%; /* Collapse down to stacked rows full width */
+  }
+}
+
+/* Mobile Screen specifics */
+@media (max-width: 576px) {
+  .ContactPosting {
+    padding: 15px 10px;
+  }
+  
+  .ContactPosting-formCard,
+  .ContactPosting-tableCard {
+    padding: 15px;
+  }
+  
+  .ContactPosting-heading {
+    font-size: 1.2rem;
+  }
+}
