@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import API, { IMG_URL } from "../../api/axios";
 import "./Archivement.css";
 
 const ClapperIcon = () => (
@@ -29,6 +30,7 @@ const ClapperIcon = () => (
     </defs>
   </svg>
 );
+
 
 const TrophyIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,6 +73,7 @@ const FilmstripIcon = () => (
 );
 
 const Archivement = () => {
+
   const achievementRef = useRef(null);
   const galleryRef = useRef(null);
   const videoRef = useRef(null);
@@ -81,12 +84,44 @@ const Archivement = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(null);
   const [activeVideo, setActiveVideo] = useState(null);
 
+  const [galleryImages, setGalleryImages] = useState([]);
+
+  // ================= Gallery API =================
+
+  useEffect(() => {
+  fetchGallery();
+  fetchVideos();
+}, []);
+
+  const fetchGallery = async () => {
+    try {
+      const res = await API.get("/gallery");
+
+      setGalleryImages(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchVideos = async () => {
+  try {
+    const res = await API.get("/videos");
+
+    setVideos(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+  // ================= Existing Function =================
+
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
+
+  // Rest of your code...
 
   // Scroll-triggered reveal + active nav tracking for each section
   useEffect(() => {
@@ -206,37 +241,9 @@ const Archivement = () => {
     },
   ];
 
-  const galleryImages = [
-    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    "https://images.unsplash.com/photo-1494526585095-c41746248156",
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9",
-    "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-  ];
+ 
 
-  const videos = [
-    {
-      title: "Conference Highlights",
-      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-      id: "dQw4w9WgXcQ",
-    },
-    {
-      title: "Achievement Ceremony",
-      thumbnail: "https://img.youtube.com/vi/ysz5S6PUM-U/maxresdefault.jpg",
-      id: "ysz5S6PUM-U",
-    },
-    {
-      title: "Workshop Moments",
-      thumbnail: "https://img.youtube.com/vi/M7lc1UVf-VE/maxresdefault.jpg",
-      id: "M7lc1UVf-VE",
-    },
-    {
-      title: "Seminar Recording",
-      thumbnail: "https://img.youtube.com/vi/aqz-KE-bpKQ/maxresdefault.jpg",
-      id: "aqz-KE-bpKQ",
-    },
-  ];
+  const [videos, setVideos] = useState([]);
 
   return (
     <div className="Archivement">
@@ -352,19 +359,30 @@ const Archivement = () => {
           <h2>Gallery</h2>
 
           <div className="Archivement_gallery">
-            {galleryImages.map((img, index) => (
-              <div
-                className="Archivement_galleryCard"
-                key={index}
-                style={{ "--delay": `${index * 0.06}s` }}
-                onClick={() => setActiveImageIndex(index)}
-              >
-                <img src={`${img}?auto=format&fit=crop&w=800&q=80`} alt="" loading="lazy" />
-                <div className="Archivement_galleryOverlay">
-                  <span>🔍 View</span>
-                </div>
-              </div>
-            ))}
+          {galleryImages.map((item, index) => (
+
+<div
+  className="Archivement_galleryCard"
+  key={item._id}
+  style={{ "--delay": `${index * 0.06}s` }}
+  onClick={() => setActiveImageIndex(index)}
+>
+
+<img
+src={`${IMG_URL}/uploads/${item.image}`}
+alt="Gallery"
+loading="lazy"
+/>
+
+<div className="Archivement_galleryOverlay">
+
+<span>🔍 View</span>
+
+</div>
+
+</div>
+
+))}
           </div>
         </section>
 
@@ -378,26 +396,49 @@ const Archivement = () => {
           <h2>Videos</h2>
 
           <div className="Archivement_videoGrid">
-            {videos.map((video, index) => (
-              <div
-                className="Archivement_videoCard"
-                key={index}
-                style={{ "--delay": `${index * 0.08}s` }}
-              >
-                <div
-                  className="Archivement_videoThumbWrap"
-                  onClick={() => setActiveVideo(video)}
-                >
-                  <img src={video.thumbnail} alt="" loading="lazy" />
-                  <span className="Archivement_playButton">▶</span>
-                </div>
+           {videos.map((video, index) => (
 
-                <div className="Archivement_videoContent">
-                  <h3>{video.title}</h3>
-                  <button onClick={() => setActiveVideo(video)}>▶ Watch Video</button>
-                </div>
-              </div>
-            ))}
+<div
+  className="Archivement_videoCard"
+  key={video._id}
+  style={{ "--delay": `${index * 0.08}s` }}
+>
+
+  <div
+    className="Archivement_videoThumbWrap"
+    onClick={() => setActiveVideo(video)}
+  >
+
+    <iframe
+      src={video.embedUrl}
+      title={video.youtubeUrl}
+      className="Archivement_videoThumb"
+      allowFullScreen
+    />
+
+    <span className="Archivement_playButton">
+      ▶
+    </span>
+
+  </div>
+
+  <div className="Archivement_videoContent">
+
+    <h3>
+      YouTube Video
+    </h3>
+
+    <button
+      onClick={() => setActiveVideo(video)}
+    >
+      ▶ Watch Video
+    </button>
+
+  </div>
+
+</div>
+
+))}
           </div>
         </section>
       </div>
@@ -439,7 +480,7 @@ const Archivement = () => {
             </button>
             <div className="Archivement_lightboxFrame">
               <img
-                src={`${galleryImages[activeImageIndex]}?auto=format&fit=crop&w=900&q=85`}
+              src={`${IMG_URL}/uploads/${galleryImages[activeImageIndex]?.image}`}
                 alt=""
               />
             </div>
@@ -462,13 +503,13 @@ const Archivement = () => {
             </button>
             <div className="Archivement_videoFrameWrap">
               <iframe
-                src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1`}
+               src={`${activeVideo.embedUrl}?autoplay=1`}
                 title={activeVideo.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             </div>
-            <h3>{activeVideo.title}</h3>
+           <h3>YouTube Video</h3>
           </div>
         </div>
       )}

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import API from "../../api/axios";
+
 import {
   FaUpload,
   FaEdit,
@@ -14,9 +17,25 @@ const VideoPosting = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [videos, setVideos] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const videosPerPage = 7;
+
+  useEffect(() => {
+  fetchVideos();
+}, []);
+
+const fetchVideos = async () => {
+  try {
+    const res = await API.get("/videos");
+
+    setVideos(res.data);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   // Helper function to extract and format YouTube Embed URL
   const getEmbedUrl = (url) => {
@@ -35,52 +54,83 @@ const VideoPosting = () => {
     return `https://www.youtube.com/embed/${videoId}`;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
 
-    const embedUrl = getEmbedUrl(videoUrl);
-    if (!embedUrl) {
-      alert("Please enter a valid YouTube URL");
-      return;
-    }
+  e.preventDefault();
 
-    if (editingId !== null) {
-      setVideos(
-        videos.map((item) =>
-          item.id === editingId
-            ? {
-                ...item,
-                video: embedUrl,
-              }
-            : item
-        )
-      );
-      setEditingId(null);
+  const embedUrl = getEmbedUrl(videoUrl);
+
+  if (!embedUrl) {
+    alert("Please Enter Valid YouTube URL");
+    return;
+  }
+
+  try {
+
+    setLoading(true);
+
+    const data = {
+
+      youtubeUrl: videoUrl,
+
+      embedUrl,
+
+    };
+
+    if (editingId) {
+
+      await API.put(`/videos/${editingId}`, data);
+
     } else {
-      const newVideo = {
-        id: Date.now(),
-        video: embedUrl,
-      };
-      setVideos([newVideo, ...videos]);
+
+      await API.post("/videos", data);
+
     }
 
-    // Reset input state
+    fetchVideos();
+
     setVideoUrl("");
-  };
 
-  const handleEdit = (item) => {
-    // Populate the input with the item's video link
-    setVideoUrl(item.video);
-    setEditingId(item.id);
-  };
+    setEditingId(null);
 
-  const handleDelete = (id) => {
-    setVideos(videos.filter((item) => item.id !== id));
-    // Fallback page adjust if last item on current page is deleted
-    if (currentVideos.length === 1 && currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  } catch (error) {
+
+    console.log(error);
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
+};
+
+ const handleEdit = (item) => {
+
+  setEditingId(item._id);
+
+  setVideoUrl(item.youtubeUrl);
+
+};
+
+  const handleDelete = async (id) => {
+
+  if (!window.confirm("Delete this video?"))
+    return;
+
+  try {
+
+    await API.delete(`/videos/${id}`);
+
+    fetchVideos();
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+};
 
   // Pagination Logic
   const indexOfLast = currentPage * videosPerPage;
@@ -125,7 +175,11 @@ const VideoPosting = () => {
 
             <button className="VideoPosting-submit" type="submit">
               {editingId ? <FaEdit /> : <FaUpload />}
-              {editingId ? " Update Video" : " Post Video"}
+            {loading
+  ? "Uploading..."
+  : editingId
+  ? " Update Video"
+  : " Post Video"}
             </button>
           </form>
         </div>
@@ -152,11 +206,11 @@ const VideoPosting = () => {
                   </tr>
                 ) : (
                   currentVideos.map((item, index) => (
-                    <tr key={item.id}>
+                   <tr key={item._id}>
                       <td>{indexOfFirst + index + 1}</td>
                       <td>
                         <iframe
-                          src={item.video}
+                         src={item.embedUrl}
                           title={`YouTube video ${item.id}`}
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -176,7 +230,7 @@ const VideoPosting = () => {
                         <button
                           type="button"
                           className="VideoPosting-delete"
-                          onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item._id)}
                         >
                           <FaTrash />
                         </button>
