@@ -3,14 +3,14 @@
    ========================================================================== */
 .committeeContainerLayout {
   width: 100%;
-  max-width: 1240px;
+  
   margin: 0 auto;
   padding: 15px 20px 100px 20px;
   box-sizing: border-box;
   background-color: #ffffff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
-
+ 
 /* --- Breadcrumb String Line Row --- */
 .headerBreadcrumbRow {
   display: flex;
@@ -152,7 +152,7 @@
 
 .memberThumbnailContainer {
   width: 100%;
-  height: 175px; /* Square proportions matching image file layouts */
+  height: 300px; /* Square proportions matching image file layouts */
   overflow: hidden;
   background-color: #f0f3f5;
   margin-bottom: 14px;
