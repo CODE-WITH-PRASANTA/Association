@@ -1,0 +1,345 @@
+.VideoPosting {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.VideoPosting-container {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.VideoPosting-formCard,
+.VideoPosting-tableCard {
+  width: 50%;
+  background: #fff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.VideoPosting-heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+.VideoPosting-inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.VideoPosting-inputGroup label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.VideoPosting-inputGroup input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.VideoPosting-inputGroup input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+
+.VideoPosting-preview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.VideoPosting-previewVideo {
+  width: 260px;
+  height: 180px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 3px solid #eee;
+  background: #000;
+}
+
+.VideoPosting-submit {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.VideoPosting-submit:hover {
+  background: #1d4ed8;
+}
+
+.VideoPosting-tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.VideoPosting-tableWrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.VideoPosting-tableWrapper th {
+  background: #2563eb;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.VideoPosting-tableWrapper td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ececec;
+  vertical-align: middle;
+}
+
+.VideoPosting-tableVideo {
+  width: 90px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #000;
+}
+
+.VideoPosting-edit,
+.VideoPosting-delete {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 4px;
+  transition: 0.3s;
+}
+
+.VideoPosting-edit {
+  background: #10b981;
+}
+
+.VideoPosting-edit:hover {
+  background: #059669;
+}
+
+.VideoPosting-delete {
+  background: #ef4444;
+}
+
+.VideoPosting-delete:hover {
+  background: #dc2626;
+}
+/* ===========================
+   Pagination
+=========================== */
+
+.VideoPosting-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.VideoPosting-pagination button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.VideoPosting-pagination button:hover:not(:disabled) {
+  background: #2563eb;
+  color: #fff;
+}
+
+.VideoPosting-pagination button.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.VideoPosting-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+.VideoPosting-tableWrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.VideoPosting-tableWrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+}
+
+.VideoPosting-tableWrapper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+/* ===========================
+   Tablet (992px)
+=========================== */
+
+@media (max-width: 992px) {
+  .VideoPosting {
+    padding: 20px;
+  }
+
+  .VideoPosting-container {
+    flex-direction: column;
+  }
+
+  .VideoPosting-formCard,
+  .VideoPosting-tableCard {
+    width: 100%;
+  }
+
+  .VideoPosting-previewVideo {
+    width: 100%;
+    max-width: 420px;
+    height: 240px;
+  }
+
+  .VideoPosting-tableVideo {
+    width: 110px;
+    height: 70px;
+  }
+}
+
+/* ===========================
+   Mobile (768px)
+=========================== */
+
+@media (max-width: 768px) {
+  .VideoPosting {
+    padding: 15px;
+  }
+
+  .VideoPosting-formCard,
+  .VideoPosting-tableCard {
+    padding: 18px;
+  }
+
+  .VideoPosting-heading {
+    font-size: 20px;
+  }
+
+  .VideoPosting-inputGroup label {
+    font-size: 14px;
+  }
+
+  .VideoPosting-inputGroup input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .VideoPosting-submit {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .VideoPosting-previewVideo {
+    width: 100%;
+    height: 220px;
+  }
+
+  .VideoPosting-tableWrapper table {
+    min-width: 450px;
+  }
+
+  .VideoPosting-tableVideo {
+    width: 90px;
+    height: 60px;
+  }
+
+  .VideoPosting-edit,
+  .VideoPosting-delete {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .VideoPosting-pagination {
+    gap: 6px;
+  }
+
+  .VideoPosting-pagination button {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+}
+
+/* ===========================
+   Small Mobile (480px)
+=========================== */
+
+@media (max-width: 480px) {
+  .VideoPosting {
+    padding: 10px;
+  }
+
+  .VideoPosting-formCard,
+  .VideoPosting-tableCard {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .VideoPosting-heading {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .VideoPosting-previewVideo {
+    height: 180px;
+  }
+
+  .VideoPosting-submit {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .VideoPosting-tableVideo {
+    width: 80px;
+    height: 55px;
+  }
+
+  .VideoPosting-tableWrapper table {
+    min-width: 400px;
+  }
+}

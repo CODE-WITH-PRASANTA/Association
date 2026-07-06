@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import "./Navbar.css";
 
-import Logo from "../../assets/logo-3.png"; // Change path
+import Logo from "../../assets/logo-3.png";
 
 const Navbar = () => {
   const [sticky, setSticky] = useState(false);
@@ -15,105 +14,86 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMenu = () => setMobileMenu(false);
+
   return (
-    <>
-      <nav className={`Navbar ${sticky ? "Navbar-sticky" : ""}`}>
+    <nav className={`Navbar ${sticky ? "Navbar-sticky" : ""}`}>
+      <div className="Navbar-container">
 
-        <div className="Navbar-container">
+        {/* Logo */}
+        <a href="#home" className="Navbar-logo" onClick={closeMenu}>
+          <img src={Logo} alt="Logo" />
+        </a>
 
-          {/* Logo */}
+        {/* Navigation Menu */}
+        <ul className={`Navbar-menu ${mobileMenu ? "Navbar-menu-open" : ""}`}>
 
-          <NavLink to="/" className="Navbar-logo">
+          <li>
+            <a href="#home" onClick={closeMenu}>
+              Home
+            </a>
+          </li>
 
-            <img src={Logo} alt="logo" />
+          <li>
+            <a href="#about" onClick={closeMenu}>
+              About
+            </a>
+          </li>
 
-          </NavLink>
+          <li>
+            <a href="#achievements-gallery" onClick={closeMenu}>
+              Achievements & Gallery
+            </a>
+          </li>
 
-          {/* Desktop Menu */}
+          <li>
+            <a href="#labour-welfare" onClick={closeMenu}>
+              Labour Welfare Organisation
+            </a>
+          </li>
 
-          <ul className={`Navbar-menu ${mobileMenu ? "Navbar-menu-open" : ""}`}>
+          <li>
+            <a href="#team-members" onClick={closeMenu}>
+              Team Members
+            </a>
+          </li>
 
-            <li>
-              <NavLink to="/" onClick={()=>setMobileMenu(false)}>
-                Home
-              </NavLink>
-            </li>
+          <li>
+            <a href="#events" onClick={closeMenu}>
+              Events
+            </a>
+          </li>
 
-            <li>
-              <NavLink to="/about" onClick={()=>setMobileMenu(false)}>
-                About
-              </NavLink>
-            </li>
+          <li className="Navbar-mobile-btn">
+            <a
+              href="#contact"
+              className="Navbar-buyBtn"
+              onClick={closeMenu}
+            >
+              Contact Us
+            </a>
+          </li>
 
-            <li>
-              <NavLink to="/association" onClick={()=>setMobileMenu(false)}>
-                Association
-              </NavLink>
-            </li>
+        </ul>
 
-            <li>
-              <NavLink to="/achievement" onClick={()=>setMobileMenu(false)}>
-                Achievement
-              </NavLink>
-            </li>
+        {/* Desktop Contact Button */}
+        <a href="#contact" className="Navbar-buyBtn Navbar-desktop-btn">
+          Contact Us
+        </a>
 
-            <li>
-              <NavLink to="/gallery" onClick={()=>setMobileMenu(false)}>
-                Gallery
-              </NavLink>
-            </li>
+        {/* Mobile Toggle */}
+        <button
+          className="Navbar-toggle"
+          onClick={() => setMobileMenu(!mobileMenu)}
+        >
+          {mobileMenu ? <FiX /> : <FiMenu />}
+        </button>
 
-            <li>
-              <NavLink to="/awards" onClick={()=>setMobileMenu(false)}>
-                Awards
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink to="/events" onClick={()=>setMobileMenu(false)}>
-                Events
-              </NavLink>
-            </li>
-
-            
-
-            <li className="Navbar-mobile-btn">
-
-              <NavLink
-                to="/contact"
-                className="Navbar-buyBtn"
-                onClick={()=>setMobileMenu(false)}
-              >
-               Contact us
-              </NavLink>
-
-            </li>
-
-          </ul>
-
-          {/* Desktop Button */}
-
-          <NavLink to="/contact" className="Navbar-buyBtn Navbar-desktop-btn">
-           Contact Us
-          </NavLink>
-
-          {/* Mobile */}
-
-          <button
-            className="Navbar-toggle"
-            onClick={() => setMobileMenu(!mobileMenu)}
-          >
-            {mobileMenu ? <FiX /> : <FiMenu />}
-          </button>
-
-        </div>
-
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

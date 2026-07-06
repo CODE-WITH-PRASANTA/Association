@@ -1,6 +1,22 @@
-/* ==========================
-   MAIN LAYOUT
-========================== */
+/*=========================================================
+                    MAIN LAYOUT
+=========================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body,
+#root{
+    width:100%;
+    height:100%;
+    overflow-x:hidden;
+    background:#f5f7fb;
+    font-family:"Poppins",sans-serif;
+}
 
 .MainLayout{
     display:flex;
@@ -10,58 +26,60 @@
     overflow:hidden;
 }
 
-/* ==========================
-   RIGHT CONTENT
-========================== */
+/*=========================================================
+                    RIGHT CONTENT
+=========================================================*/
 
 .MainLayout-content{
     flex:1;
     display:flex;
     flex-direction:column;
     margin-left:280px;
-    transition:.35s ease;
+    min-width:0;
     min-height:100vh;
+    transition:.35s ease;
 }
 
 .MainLayout-content.collapsed{
     margin-left:90px;
 }
 
-/* ==========================
-   PAGE
-========================== */
+/*=========================================================
+                    PAGE
+=========================================================*/
 
 .MainLayout-page{
     flex:1;
-    padding:30px;
+    padding:25px;
     overflow-y:auto;
+    overflow-x:hidden;
     background:#f5f7fb;
+    min-height:100vh;
+    -webkit-overflow-scrolling:touch;
 }
 
-/* Scrollbar */
+/*=========================================================
+                    SCROLLBAR
+=========================================================*/
 
 .MainLayout-page::-webkit-scrollbar{
-    width:8px;
+    width:6px;
 }
 
 .MainLayout-page::-webkit-scrollbar-thumb{
-    background:#d8d8d8;
+    background:#c9c9c9;
     border-radius:20px;
 }
 
-/* ==========================
-   TABLETS
-========================== */
-
-@media(max-width:992px){
-
-.MainLayout-content{
-    margin-left:0;
+.MainLayout-page::-webkit-scrollbar-track{
+    background:transparent;
 }
 
-.MainLayout-content.collapsed{
-    margin-left:0;
-}
+/*=========================================================
+                    LARGE LAPTOP
+=========================================================*/
+
+@media(max-width:1400px){
 
 .MainLayout-page{
     padding:22px;
@@ -69,26 +87,135 @@
 
 }
 
-/* ==========================
-   MOBILE
-========================== */
+/*=========================================================
+                    LAPTOP
+=========================================================*/
+
+@media(max-width:1200px){
+
+.MainLayout-content{
+    margin-left:90px;
+}
+
+.MainLayout-content.collapsed{
+    margin-left:90px;
+}
+
+.MainLayout-page{
+    padding:20px;
+}
+
+}
+
+/*=========================================================
+                    TABLET
+=========================================================*/
+
+@media(max-width:992px){
+
+.MainLayout{
+
+    display:block;
+
+}
+
+.MainLayout-content{
+
+    margin-left:0;
+    width:100%;
+    min-height:100vh;
+
+}
+
+.MainLayout-content.collapsed{
+
+    margin-left:0;
+
+}
+
+.MainLayout-page{
+
+    padding:18px;
+    min-height:calc(100vh - 70px);
+
+}
+
+}
+
+/*=========================================================
+                    MOBILE
+=========================================================*/
 
 @media(max-width:768px){
 
-.MainLayout-page{
-    padding:18px;
-}
+html,
+body,
+#root{
+
+    height:100%;
+    overflow-x:hidden;
 
 }
 
-/* ==========================
-   SMALL MOBILE
-========================== */
+.MainLayout{
 
-@media(max-width:480px){
+    display:block;
+    min-height:100dvh;
+
+}
+
+.MainLayout-content{
+
+    width:100%;
+    margin-left:0;
+    min-height:100dvh;
+
+}
+
+.MainLayout-content.collapsed{
+
+    margin-left:0;
+
+}
 
 .MainLayout-page{
+
     padding:15px;
+    min-height:calc(100dvh - 65px);
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+}
+
+/*=========================================================
+                SMALL MOBILE
+=========================================================*/
+
+@media(max-width:576px){
+
+.MainLayout-page{
+
+    padding:12px;
+
+}
+
+}
+
+/*=========================================================
+                EXTRA SMALL
+=========================================================*/
+
+@media(max-width:420px){
+
+.MainLayout-page{
+
+    padding:10px;
+
 }
 
 }
