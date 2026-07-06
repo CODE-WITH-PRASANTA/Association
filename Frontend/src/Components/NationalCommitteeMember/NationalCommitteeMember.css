@@ -1,0 +1,289 @@
+/* ==========================================================================
+   Structural Foundation Layout Controls
+   ========================================================================== */
+.committeeContainerLayout {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 15px 20px 100px 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- Breadcrumb String Line Row --- */
+.headerBreadcrumbRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #333333;
+  margin-bottom: 25px;
+  padding-left: 2px;
+}
+
+.bcMuted { color: #777777; }
+.bcHome { color: #333333; cursor: pointer; }
+.bcArrow { color: #b8c1cd; font-size: 0.6rem; margin: 0 2px; }
+.bcCurrent { color: #0c3d59; font-weight: 500; }
+
+/* ==========================================================================
+   Header Banner Ribbon Block Component
+   ========================================================================== */
+.nationalTitleRibbon {
+  width: 100%;
+  background-color: #0c3d59; /* Target Deep Slate Teal Tone matching reference layout */
+  height: 52px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* Accent bottom tag boundary edge marker */
+.nationalTitleRibbon::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 135px;
+  height: 4px;
+  background-color: #00b050; /* Bright Green line accent base string */
+}
+
+.titleBadgeInner {
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-left: 14px;
+}
+
+/* ==========================================================================
+   President Executive Layout Architecture
+   ========================================================================== */
+.presidentShowcaseSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Saffron, White and Green Indian flag circular ring accent emulation */
+.presidentAvatarRing {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.gradientBorderCircle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 5px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #128807 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presidentImgProfile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #f7f9fa;
+}
+
+.presidentLabelMeta {
+  border-bottom: 1px solid #0c3d59;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+  min-width: 160px;
+}
+
+.presDesignation {
+  font-size: 0.95rem;
+  color: #0c3d59;
+  font-weight: 500;
+}
+
+.presContactNum {
+  font-size: 0.85rem;
+  color: #444444;
+  margin-top: 4px;
+}
+
+.presidentFullIdentity {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0c3d59;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+}
+
+.subTitleOffice {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0c3d59;
+}
+
+/* ==========================================================================
+   Committee Profile Matrix Grid System
+   ========================================================================== */
+.committeeMembersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Column arrangement architecture */
+  gap: 40px 24px;
+}
+
+/* --- Card Base Element Layout Block --- */
+.committeeProfileCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding-bottom: 12px;
+}
+
+.memberThumbnailContainer {
+  width: 100%;
+  height: 175px; /* Square proportions matching image file layouts */
+  overflow: hidden;
+  background-color: #f0f3f5;
+  margin-bottom: 14px;
+}
+
+.memberThumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Image zoom feedback on profile interaction triggers */
+.committeeProfileCard:hover .memberThumbnailImage {
+  transform: scale(1.04);
+}
+
+.memberCardDetailsText {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2px;
+}
+
+.memberRoleTitle {
+  font-size: 0.82rem;
+  color: #555555;
+  font-weight: 500;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  min-height: 16px; /* Holds formatting alignment grid lines unbroken */
+}
+
+.memberActualName {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0c3d59;
+  margin: 0 0 5px 0;
+  line-height: 1.3;
+  letter-spacing: -0.1px;
+}
+
+.memberMobileString {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0c3d59;
+  letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   Micro Sliding Line Slider Hover Effect Component (As per Screenshot 4)
+   ========================================================================== */
+.hoverHighlightBarSlider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: #00b050; /* Matches active highlighting color palette */
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Component active interaction states */
+.committeeProfileCard:hover .hoverHighlightBarSlider {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Fluid Responsive Interface Breakpoints Configuration
+   ========================================================================== */
+
+/* Tablet Framework Settings */
+@media (max-width: 1024px) {
+  .committeeMembersGrid {
+    grid-template-columns: repeat(3, 1fr); /* Snaps fluidly down onto a 3-column block framework */
+    gap: 35px 20px;
+  }
+}
+
+/* Medium Device / Small Tablet Breakdowns */
+@media (max-width: 768px) {
+  .committeeContainerLayout {
+    padding: 10px 15px 60px 15px;
+  }
+
+  .nationalTitleRibbon {
+    margin-bottom: 30px;
+  }
+
+  .committeeMembersGrid {
+    grid-template-columns: repeat(2, 1fr); /* Re-flows gracefully to dual columns on medium widths */
+    gap: 30px 16px;
+  }
+
+  .memberThumbnailContainer {
+    height: 190px; /* Expands height view ratio parameters on larger portable grids */
+  }
+}
+
+/* Handheld Mobile Screen Configurations */
+@media (max-width: 480px) {
+  .headerBreadcrumbRow {
+    display: none; /* Safely clears top clutter string lines inside miniature screen environments */
+  }
+
+  .nationalTitleRibbon {
+    height: 46px;
+  }
+
+  .presidentAvatarRing {
+    width: 140px;
+    height: 140px;
+  }
+
+  .presidentFullIdentity {
+    font-size: 0.88rem;
+  }
+
+  .subTitleOffice {
+    font-size: 0.8rem;
+  }
+
+  .committeeMembersGrid {
+    grid-template-columns: 1fr; /* Drops into unified clean single-stack cards feed */
+    gap: 28px 0;
+    max-width: 320px;
+    margin: 0 auto; /* Keeps card stacks cleanly centered */
+  }
+
+  .memberThumbnailContainer {
+    height: 220px; /* Perfect full horizontal width stretch balance */
+  }
+}
