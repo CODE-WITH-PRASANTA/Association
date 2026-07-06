@@ -6,17 +6,23 @@ import Archivement from '../../Components/Archivement/Archivement'
 import Contact from '../../Components/Contact/Contact'
 import Events from '../../Components/Events/Events'
 import TeamManagement from '../../Components/TeamManagement/TeamManagement'
+import MainHeroSection from '../../Components/MainHeroSection/MainHeroSection'
+import Functions from '../../Components/Functions/Functions'
+import NationalCommitteeMember from '../../Components/NationalCommitteeMember/NationalCommitteeMember'
 
 const Home = () => {
   return (
     <div>
+        <MainHeroSection />
         <HeroSection />
         <Abouthome/>
         <Authority/>
         <Archivement/>
-        <Contact/>
-        <TeamManagement/>
+        {/* <Contact/> */}
+       
         <Events/>
+        <Functions/>
+        <NationalCommitteeMember />
     </div>
   )
 }

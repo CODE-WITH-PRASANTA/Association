@@ -12,6 +12,7 @@ const galleryRoutes = require("./src/routes/galleryRoutes");
 const videoRoutes = require("./src/routes/videoRoutes");
 const eventRoutes = require("./src/routes/eventRoutes");
 const teamRoutes = require("./src/routes/teamRoutes");
+const contactRoutes = require("./src/routes/contactRoutes");
 
 // Connect Database
 connectDB();
@@ -33,6 +34,7 @@ app.use("/api/gallery", galleryRoutes);
 app.use("/api/videos", videoRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/team", teamRoutes);
+app.use("/api/contact", contactRoutes);
 
 
 // ================= Home Route =================

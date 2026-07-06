@@ -1,0 +1,243 @@
+/* ==========================================================================
+   Global Section Settings
+   ========================================================================== */
+.contactSection {
+  width: 100%;
+  min-height: 80vh;
+  background-color: #ffffff; /* Same to same clean background */
+  padding: 80px 40px;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.contactContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header Layout styling
+   ========================================================================== */
+.contactHeader {
+  margin-bottom: 70px;
+  text-align: left;
+}
+
+.mainTitle {
+  font-size: 2.15rem;
+  font-weight: 800;
+  color: #0c3d59; /* Precise dark slate blue */
+  margin: 0 0 10px 0;
+  letter-spacing: -0.2px;
+}
+
+.phoneContactTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0c3d59;
+  margin: 0;
+}
+
+.greenHighlightText {
+  color: #00b050; /* Exact neon green helpline tracking color code */
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   3-Column Main Grid Structure
+   ========================================================================== */
+.contactMainGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* --- Left Column Info Blocks --- */
+.textInfoColumn {
+  padding-right: 15px;
+}
+
+.sectionSubHeading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0c3d59;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.2px;
+}
+
+.descriptionParagraph {
+  font-size: 0.95rem;
+  color: #44546a; /* Balanced muted grey-blue tone */
+  line-height: 1.6;
+  margin: 0 0 25px 0;
+}
+
+/* --- Social Icons Row & Styling States --- */
+.socialIconRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.socialBox {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.socialBox:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+/* Precise color definitions matching the screenshot layout */
+.socialBox.facebook {
+  background-color: #4a6ea9;
+  color: #ffffff;
+}
+
+.socialBox.twitter {
+  background-color: #30a7ec;
+  color: #ffffff;
+}
+
+.socialBox.instagram {
+  background-color: transparent;
+  color: #e1e1e1; /* Pale faded gray icon outline */
+  font-size: 1.1rem;
+}
+
+.socialBox.youtube {
+  background-color: transparent;
+  color: #e1e1e1; /* Pale faded gray icon outline */
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   Form Fields Integration Components
+   ========================================================================== */
+.formFieldWrapperGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.inputFieldsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Aligns inputs perfectly to span down sequentially */
+}
+
+.textareaFieldColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Input & Textarea Elements Properties --- */
+.formFieldWrapperGrid input,
+.formFieldWrapperGrid textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #dbe5f1; /* Exact pastel blue input background */
+  border: none;
+  outline: none;
+  padding: 15px 18px;
+  font-size: 1rem;
+  color: #333333;
+  border-radius: 0px; /* Hard sharp corners as shown in layout image */
+  transition: background-color 0.2s ease;
+}
+
+.formFieldWrapperGrid textarea {
+  height: 196px; /* Scaled seamlessly to pair symmetrically with inputs */
+  resize: none;
+  font-family: inherit;
+}
+
+/* Form Fields Interaction Behaviors */
+.formFieldWrapperGrid input:focus,
+.formFieldWrapperGrid textarea:focus {
+  background-color: #cbd7e9;
+}
+
+.formFieldWrapperGrid input::placeholder,
+.formFieldWrapperGrid textarea::placeholder {
+  color: #7f8fa4;
+  opacity: 1;
+}
+
+/* --- Red-Orange Call to Action Button --- */
+.mailSubmitBtn {
+  margin-top: 20px;
+  background-color: #f04a00; /* Accurate vibrant orange-red tint matching screenshot image */
+  color: #ffffff;
+  border: none;
+  padding: 15px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: flex-start; /* Keeps width constrained precisely underneath the comment field */
+  width: 180px; 
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.mailSubmitBtn:hover {
+  background-color: #d64200; /* Subtle professional hover overlay effect */
+}
+
+.mailSubmitBtn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Comprehensive Device Responsiveness Breakpoints
+   ========================================================================== */
+
+/* Tablet Optimization */
+@media (max-width: 1024px) {
+  .contactMainGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .textInfoColumn {
+    padding-right: 0;
+  }
+}
+
+/* Mobile Screens Styling Breakdowns */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 40px 20px;
+  }
+
+  .mainTitle {
+    font-size: 1.65rem;
+  }
+
+  .phoneContactTitle {
+    font-size: 1.15rem;
+  }
+
+  .formFieldWrapperGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .formFieldWrapperGrid textarea {
+    height: 150px;
+  }
+
+  .mailSubmitBtn {
+    width: 100%; /* Adapts fully to fluid touch screen layouts */
+    align-self: stretch;
+  }
+}

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import API from "../../api/axios";
 import { FaEdit, FaTrash, FaPaperPlane } from "react-icons/fa";
 import "./ContactPosting.css";
 
@@ -12,7 +14,27 @@ const ContactPosting = () => {
   });
 
   const [contacts, setContacts] = useState([]);
-  const [editingId, setEditingId] = useState(null);
+ const [editingId, setEditingId] = useState(null);
+
+const [loading, setLoading] = useState(false);
+
+useEffect(() => {
+  fetchContacts();
+}, []);
+
+const fetchContacts = async () => {
+  try {
+
+    const res = await API.get("/contact");
+
+    setContacts(res.data);
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+};
 
   // Handle Input Changes
   const handleChange = (e) => {
@@ -21,46 +43,102 @@ const ContactPosting = () => {
   };
 
   // Form Submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
 
-    if (editingId !== null) {
-      // Update existing record
-      setContacts(
-        contacts.map((contact) =>
-          contact.id === editingId ? { ...contact, ...formData } : contact
-        )
-      );
-      setEditingId(null);
-    } else {
-      // Add new record
-      const newContact = {
-        id: Date.now(),
-        ...formData,
-      };
-      setContacts([newContact, ...contacts]);
+  e.preventDefault();
+
+  try {
+
+    setLoading(true);
+
+    if (editingId) {
+
+      await API.put(`/contact/${editingId}`, formData);
+
     }
 
-    // Reset Form
-    setFormData({ name: "", phone: "", email: "", subject: "", message: "" });
-  };
+    else {
+
+      await API.post("/contact", formData);
+
+    }
+
+    fetchContacts();
+
+    setEditingId(null);
+
+    setFormData({
+
+      name: "",
+
+      phone: "",
+
+      email: "",
+
+      subject: "",
+
+      message: "",
+
+    });
+
+  }
+
+  catch (error) {
+
+    console.log(error);
+
+  }
+
+  finally {
+
+    setLoading(false);
+
+  }
+
+};
 
   // Populate form for editing
-  const handleEdit = (contact) => {
-    setFormData({
-      name: contact.name,
-      phone: contact.phone,
-      email: contact.email,
-      subject: contact.subject,
-      message: contact.message,
-    });
-    setEditingId(contact.id);
-  };
+ const handleEdit = (contact) => {
+
+  setEditingId(contact._id);
+
+  setFormData({
+
+    name: contact.name,
+
+    phone: contact.phone,
+
+    email: contact.email,
+
+    subject: contact.subject,
+
+    message: contact.message,
+
+  });
+
+};
 
   // Delete Record
-  const handleDelete = (id) => {
-    setContacts(contacts.filter((contact) => contact.id !== id));
-  };
+  const handleDelete = async (id) => {
+
+  if (!window.confirm("Delete this contact?"))
+    return;
+
+  try {
+
+    await API.delete(`/contact/${id}`);
+
+    fetchContacts();
+
+  }
+
+  catch (error) {
+
+    console.log(error);
+
+  }
+
+};
 
   return (
     <div className="ContactPosting">
@@ -139,7 +217,13 @@ const ContactPosting = () => {
             </div>
 
             <button type="submit" className="ContactPosting-submitBtn">
-              <FaPaperPlane /> {editingId ? "Update Message" : "Submit Contact"}
+             <FaPaperPlane />
+
+{loading
+  ? "Saving..."
+  : editingId
+  ? "Update Message"
+  : "Submit Contact"}
             </button>
           </form>
         </div>
@@ -166,7 +250,7 @@ const ContactPosting = () => {
                   </tr>
                 ) : (
                   contacts.map((item, index) => (
-                    <tr key={item.id}>
+                   <tr key={item._id}>
                       <td>{index + 1}</td>
                       <td>
                         <div className="ContactPosting-cellMeta">
@@ -194,7 +278,7 @@ const ContactPosting = () => {
                           <button
                             type="button"
                             className="ContactPosting-actionBtn delete"
-                            onClick={() => handleDelete(item.id)}
+                           onClick={() => handleDelete(item._id)}
                             title="Delete"
                           >
                             <FaTrash />
