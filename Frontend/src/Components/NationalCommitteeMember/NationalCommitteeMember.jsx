@@ -3,12 +3,13 @@ import API, { IMG_URL } from "../../api/axios";
 import './NationalCommitteeMember.css';
 
 // 1. Import your saved photo file here
-import presidentPhoto from '../../assets/main.jpeg'; // <-- Adjust this path to match where you saved it
+import presidentPhoto from '../../assets/main.jpeg'; 
 
 const NationalCommitteeMember = () => {
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch team array dynamically from your backend API
   useEffect(() => {
     const fetchCommittee = async () => {
       try {
@@ -43,7 +44,7 @@ const NationalCommitteeMember = () => {
       <div className="presidentShowcaseSection">
         <div className="presidentAvatarRing">
           <div className="gradientBorderCircle">
-            {/* 2. Use the imported local image variable here */}
+            {/* 2. Fixed Image tag syntax to use your imported president local photo */}
             <img 
               src={presidentPhoto} 
               alt="President ER. SURESH SHYAMLAL GUPTA" 
