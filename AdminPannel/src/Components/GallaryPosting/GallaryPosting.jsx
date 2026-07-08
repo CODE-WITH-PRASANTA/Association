@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import API, { IMG_URL } from "../../api/axios";
+
 import {
   FaUpload,
   FaEdit,
@@ -6,6 +9,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+
 import "./GallaryPosting.css";
 
 const GallaryPosting = () => {
@@ -13,10 +17,25 @@ const GallaryPosting = () => {
   const [preview, setPreview] = useState("");
   const [gallery, setGallery] = useState([]);
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const imagesPerPage = 7;
+
+  useEffect(() => {
+  fetchGallery();
+}, []);
+
+const fetchGallery = async () => {
+  try {
+    const res = await API.get("/gallery");
+
+    setGallery(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -27,47 +46,75 @@ const GallaryPosting = () => {
     setPreview(URL.createObjectURL(file));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!image) return;
+  if (!image) {
+    alert("Please select an image.");
+    return;
+  }
 
-    if (editingId !== null) {
-      setGallery(
-        gallery.map((item) =>
-          item.id === editingId
-            ? {
-                ...item,
-                image: preview,
-              }
-            : item
-        )
-      );
+  try {
+    setLoading(true);
 
-      setEditingId(null);
+    const formData = new FormData();
+
+    formData.append("image", image);
+
+    if (editingId) {
+      await API.put(`/gallery/${editingId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     } else {
-      const newGallery = {
-        id: Date.now(),
-        image: preview,
-      };
-
-      setGallery([newGallery, ...gallery]);
+      await API.post("/gallery/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     }
 
+    fetchGallery();
+
     setImage(null);
+
     setPreview("");
 
+    setEditingId(null);
+
     document.getElementById("GallaryPostingImage").value = "";
-  };
 
-  const handleEdit = (item) => {
-    setPreview(item.image);
-    setEditingId(item.id);
-  };
+  } catch (error) {
+    console.log(error);
 
-  const handleDelete = (id) => {
-    setGallery(gallery.filter((item) => item.id !== id));
-  };
+    alert("Upload Failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
+ const handleEdit = (item) => {
+  setEditingId(item._id);
+
+  setPreview(`${IMG_URL}/uploads/${item.image}`);
+};
+
+ const handleDelete = async (id) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this image?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    await API.delete(`/gallery/${id}`);
+
+    fetchGallery();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const indexOfLast = currentPage * imagesPerPage;
   const indexOfFirst = indexOfLast - imagesPerPage;
@@ -120,7 +167,11 @@ const GallaryPosting = () => {
 
               <FaUpload />
 
-              {editingId ? "Update Image" : "Upload Image"}
+             {loading
+  ? "Uploading..."
+  : editingId
+  ? "Update Image"
+  : "Upload Image"}
 
             </button>
 
@@ -174,7 +225,7 @@ const GallaryPosting = () => {
 
                   currentImages.map((item, index) => (
 
-                    <tr key={item.id}>
+                    <tr key={item._id}>
 
                       <td>
                         {indexOfFirst + index + 1}
@@ -183,10 +234,10 @@ const GallaryPosting = () => {
                       <td>
 
                         <img
-                          src={item.image}
-                          alt=""
-                          className="GallaryPosting-tableImage"
-                        />
+  src={`${IMG_URL}/uploads/${item.image}`}
+  alt="Gallery"
+  className="GallaryPosting-tableImage"
+/>
 
                       </td>
 
@@ -201,7 +252,7 @@ const GallaryPosting = () => {
 
                         <button
                           className="GallaryPosting-delete"
-                          onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(item._id)}
                         >
                           <FaTrash />
                         </button>

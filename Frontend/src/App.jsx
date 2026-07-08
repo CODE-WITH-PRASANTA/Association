@@ -5,7 +5,7 @@ import Footer from "./Components/Footer/Footer";
 import Home from "./Pages/Home/Home";
 import EventDetails from "./Components/EventDetails/EventDetails";
 import FloatingIcons from "./Components/FloatingIcons/FloatingIcons";
-
+import ContactSection from "./Pages/ContactSection/ContactSection";
 
 
 
@@ -19,6 +19,8 @@ function App() {
 
        <Route path="/" element={<Home />} />
        <Route path="/eventdetails" element={<EventDetails/>}/>
+       <Route path="/contact" element={<ContactSection />} />
+       
 
       </Routes>
       <FloatingIcons/>

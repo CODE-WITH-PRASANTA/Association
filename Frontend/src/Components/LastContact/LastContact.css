@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Section Layout & Faint Geometric Background Pattern Setup
+   ========================================================================== */
+.lastContactSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6fc; /* Off-white tint with a crisp clean light-blue hint */
+  padding: 20px 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Abstract geometric lines mapped exactly to the screenshot's composition background */
+.geometricShape {
+  position: absolute;
+  background-color: #eaedf7; 
+  transform: rotate(-35deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shapeLeft {
+  width: 600px;
+  height: 400px;
+  top: -100px;
+  left: -250px;
+  clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);
+}
+
+.shapeRight {
+  width: 700px;
+  height: 500px;
+  bottom: -150px;
+  right: -150px;
+  opacity: 0.7;
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* ==========================================================================
+   CSS Responsive Grid System Configuration
+   ========================================================================== */
+.cardsContainerGrid {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px 30px; /* Precise vertical and horizontal layout distribution offsets */
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Card Block Styling Essentials
+   ========================================================================== */
+.contactDisplayCard {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 0px; /* Hard sharp corner geometry edges matching references */
+  padding: 40px 30px 35px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* Soft drop shadow blur layer styles */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+  min-height: 250px;
+  box-sizing: border-box;
+}
+
+/* --- Interactive Hover Scales --- */
+.contactDisplayCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(13, 61, 89, 0.1);
+}
+
+/* --- Larger/Taller Dynamic Dimensions for Primary Head Office --- */
+.contactDisplayCard.primaryHeadOffice {
+  min-height: 285px; /* Noticeably taller height as seen in Screenshot 2026-07-06 171610.png */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* ==========================================================================
+   Top Hanging Badge Components
+   ========================================================================== */
+.iconBadgeTag {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 46px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.15rem;
+}
+
+.iconBadgeTag.darkBlueTag {
+  background-color: #0c3d59; /* Precise dark blue code matching regular cards */
+}
+
+.iconBadgeTag.greenTag {
+  background-color: #00b050; /* Distinct bright green icon tag matching head office */
+}
+
+/* ==========================================================================
+   Card Content & Inner Typography Aesthetics
+   ========================================================================== */
+.cardHeaderTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0c3d59; /* Deep slate blue lettering accents */
+  margin: 25px 0 18px 0;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+
+.cardDetails {
+  width: 100%;
+  font-size: 0.92rem;
+  color: #44546a; /* Muted corporate descriptive gray layout color */
+  line-height: 1.6;
+}
+
+.cardDetails p {
+  margin: 0 0 6px 0;
+}
+
+.cardDetails p strong {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+/* Sub-info description block found inside specific cards */
+.subtitleInfo {
+  font-size: 0.95rem;
+  color: #556377;
+  margin-bottom: 12px;
+}
+
+/* Bright green color updates matching reference phone and email strings */
+.highlightGreen {
+  color: #00b050;
+  font-weight: 600;
+}
+
+/* Interactive Direct Map Anchor Hyperlink styling */
+.mapLink {
+  color: #556377;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.mapLink:hover {
+  color: #00b050;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive View Breakpoint Media Queries
+   ========================================================================== */
+
+/* Laptop & Medium Screen Viewports */
+@media (max-width: 1100px) {
+  .cardsContainerGrid {
+    grid-template-columns: repeat(2, 1fr); /* Snaps smoothly into 2-columns configuration */
+    gap: 30px;
+    padding: 0 10px;
+  }
+}
+
+/* Tablet Device Breakdowns */
+@media (max-width: 768px) {
+  .lastContactSection {
+    padding: 60px 20px;
+  }
+
+  .cardsContainerGrid {
+    grid-template-columns: 1fr; /* Simplifies layout seamlessly onto a single vertical column flow */
+    gap: 25px;
+  }
+  
+  .contactDisplayCard,
+  .contactDisplayCard.primaryHeadOffice {
+    min-height: auto; /* Scales component size fluidly relative to internal content tags */
+    padding: 35px 24px 30px 24px;
+  }
+
+  .cardHeaderTitle {
+    font-size: 1.05rem;
+    margin-top: 20px;
+  }
+}
+
+/* Extra Compact Screens (Mobile Portrait Viewports) */
+@media (max-width: 480px) {
+  .lastContactSection {
+    padding: 40px 15px;
+  }
+
+  .contactDisplayCard {
+    padding: 35px 20px 25px 20px;
+  }
+
+  .iconBadgeTag {
+    left: 20px;
+    width: 40px;
+    height: 42px;
+    font-size: 1rem;
+  }
+}

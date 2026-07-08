@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import API, { IMG_URL } from "../../api/axios";
 import "./TeamManagement.css";
 import {
   FaEdit,
@@ -21,10 +23,30 @@ const TeamManagement = () => {
 
   const [formData, setFormData] = useState(initialForm);
   const [teamList, setTeamList] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
+ const [editIndex, setEditIndex] = useState(null);
+
+const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  useEffect(() => {
+  fetchTeam();
+}, []);
+
+const fetchTeam = async () => {
+  try {
+
+    const res = await API.get("/team");
+
+    setTeamList(res.data);
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,54 +74,132 @@ const TeamManagement = () => {
     setEditIndex(null);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
 
-    if (
-      !formData.name ||
-      !formData.designation ||
-      !formData.regdNo ||
-      !formData.address ||
-      !formData.mobile ||
-      !formData.preview
-    ) {
-      alert("Please fill all fields.");
-      return;
+  e.preventDefault();
+
+  try {
+
+    setLoading(true);
+
+    const data = new FormData();
+
+    data.append("name", formData.name);
+
+    data.append("designation", formData.designation);
+
+    data.append("regdNo", formData.regdNo);
+
+    data.append("address", formData.address);
+
+    data.append("mobile", formData.mobile);
+
+    if (formData.photo) {
+
+      data.append("image", formData.photo);
+
     }
 
-    if (editIndex !== null) {
-      const updated = [...teamList];
-      updated[editIndex] = formData;
-      setTeamList(updated);
-      alert("Team member updated successfully.");
-    } else {
-      setTeamList([...teamList, formData]);
-      alert("Team member added successfully.");
+    if (editIndex) {
+
+      await API.put(`/team/${editIndex}`, data, {
+
+        headers: {
+
+          "Content-Type":"multipart/form-data",
+
+        }
+
+      });
+
     }
+
+    else {
+
+      await API.post("/team", data, {
+
+        headers:{
+
+          "Content-Type":"multipart/form-data"
+
+        }
+
+      });
+
+    }
+
+    fetchTeam();
 
     resetForm();
-  };
 
-  const handleDelete = (index) => {
-    if (window.confirm("Delete this team member?")) {
-      const updated = teamList.filter((_, i) => i !== index);
-      setTeamList(updated);
+  }
 
-      if ((currentPage - 1) * itemsPerPage >= updated.length && currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
-    }
-  };
+  catch(error){
 
-  const handleEdit = (index) => {
-    setFormData(teamList[index]);
-    setEditIndex(index);
+    console.log(error);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  }
+
+  finally{
+
+    setLoading(false);
+
+  }
+
+};
+
+ const handleDelete = async (id) => {
+
+  if(!window.confirm("Delete this member?"))
+    return;
+
+  try{
+
+    await API.delete(`/team/${id}`);
+
+    fetchTeam();
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+};
+
+  const handleEdit = (member) => {
+
+  setEditIndex(member._id);
+
+  setFormData({
+
+    name:member.name,
+
+    designation:member.designation,
+
+    regdNo:member.regdNo,
+
+    address:member.address,
+
+    mobile:member.mobile,
+
+    photo:null,
+
+    preview:`${IMG_URL}/uploads/${member.photo}`
+
+  });
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth",
+
+  });
+
+};
 
   // Pagination
   const totalPages = Math.ceil(teamList.length / itemsPerPage);
@@ -336,11 +436,11 @@ const TeamManagement = () => {
 
                           <td>
 
-                            <img
-                              src={member.preview}
-                              alt={member.name}
-                              className="TeamManagement-tableImage"
-                            />
+                           <img
+  src={`${IMG_URL}/uploads/${member.photo}`}
+  alt={member.name}
+  className="TeamManagement-tableImage"
+/>
 
                           </td>
 

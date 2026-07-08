@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import API, { IMG_URL } from "../../api/axios";
 import "./EventManagement.css";
 import { Editor } from "@tinymce/tinymce-react";
 import {
@@ -18,10 +19,25 @@ const EventManagement = () => {
   const [events, setEvents] = useState([]);
 
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 8;
+  useEffect(() => {
+  fetchEvents();
+}, []);
+
+const fetchEvents = async () => {
+  try {
+    const res = await API.get("/events");
+
+    setEvents(res.data);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const [formData, setFormData] = useState({
     title: "",
@@ -79,127 +95,138 @@ const EventManagement = () => {
   // Save Event
   // ==========================
 
-  const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    if (
-      !formData.title ||
-      !formData.category ||
-      !formData.description ||
-      !formData.preview
-    ) {
+  try {
 
-      alert("Please fill all fields.");
+    setLoading(true);
 
-      return;
+    const data = new FormData();
+
+    data.append("title", formData.title);
+
+    data.append("category", formData.category);
+
+    data.append("description", formData.description);
+
+    if (formData.image) {
+
+      data.append("image", formData.image);
 
     }
-
-    const newEvent = {
-
-      id: editingId || Date.now(),
-
-      title: formData.title,
-
-      category: formData.category,
-
-      description: formData.description,
-
-      image: formData.preview,
-
-      date: new Date().toLocaleDateString(),
-
-    };
 
     if (editingId) {
 
-      setEvents(
-        events.map((item) =>
-          item.id === editingId ? newEvent : item
-        )
-      );
+      await API.put(`/events/${editingId}`, data, {
 
-      setEditingId(null);
+        headers: {
 
-    } else {
+          "Content-Type":"multipart/form-data",
 
-      setEvents([newEvent, ...events]);
+        }
+
+      });
 
     }
 
+    else {
+
+      await API.post("/events", data, {
+
+        headers:{
+
+          "Content-Type":"multipart/form-data"
+
+        }
+
+      });
+
+    }
+
+    fetchEvents();
+
+    setEditingId(null);
+
     setFormData({
 
-      title: "",
+      title:"",
 
-      category: "",
+      category:"",
 
-      description: "",
+      description:"",
 
-      image: null,
+      image:null,
 
-      preview: "",
+      preview:""
 
     });
 
-    setCurrentPage(1);
+  }
 
-  };
+  catch(error){
+
+    console.log(error);
+
+  }
+
+  finally{
+
+    setLoading(false);
+
+  }
+
+};
 
   // ==========================
   // Edit Event
   // ==========================
 
-  const handleEdit = (event) => {
+const handleEdit = (event) => {
 
-    setEditingId(event.id);
+  setEditingId(event._id);
 
-    setFormData({
+  setFormData({
 
-      title: event.title,
+    title:event.title,
 
-      category: event.category,
+    category:event.category,
 
-      description: event.description,
+    description:event.description,
 
-      image: null,
+    image:null,
 
-      preview: event.image,
+    preview:`${IMG_URL}/uploads/${event.image}`
 
-    });
+  });
 
-    window.scrollTo({
-
-      top: 0,
-
-      behavior: "smooth",
-
-    });
-
-  };
+};
 
   // ==========================
   // Delete Event
   // ==========================
 
-  const handleDelete = (id) => {
+ const handleDelete = async (id) => {
 
-    if (!window.confirm("Delete this event?")) return;
+  if(!window.confirm("Delete this Event?"))
+    return;
 
-    const updated = events.filter(
-      (item) => item.id !== id
-    );
+  try{
 
-    setEvents(updated);
+    await API.delete(`/events/${id}`);
 
-    if (
-      (currentPage - 1) * itemsPerPage >= updated.length &&
-      currentPage > 1
-    ) {
-      setCurrentPage(currentPage - 1);
-    }
+    fetchEvents();
 
-  };
+  }
+
+  catch(error){
+
+    console.log(error);
+
+  }
+
+};
 
   // ==========================
   // Pagination
@@ -410,10 +437,11 @@ const EventManagement = () => {
 
           <FaPlus />
 
-          {editingId
-            ? "Update Event"
-            : "Save Event"}
-
+         {loading
+? "Saving..."
+: editingId
+? "Update Event"
+: "Save Event"}
         </button>
 
       </form>
@@ -465,14 +493,14 @@ const EventManagement = () => {
 
               currentEvents.map((item, index) => (
 
-                <tr key={item.id}>
+               <tr key={item._id}>
 
                   <td>{firstIndex + index + 1}</td>
 
                   <td>
 
                     <img
-                      src={item.image}
+                     src={`${IMG_URL}/uploads/${item.image}`}
                       alt={item.title}
                       className="EventManagement-tableImage"
                     />
@@ -525,7 +553,7 @@ const EventManagement = () => {
                       <button
                         type="button"
                         className="deleteBtn"
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item._id)}
                         title="Delete"
                       >
 
