@@ -1,0 +1,626 @@
+/* ==========================================================================
+   Variables & Theme Setup (Matching the Reference Image)
+   ========================================================================== */
+:root {
+  --ap-bg: #f4f6f9;
+  --ap-card-bg: #ffffff;
+  --ap-text-main: #1e293b;
+  --ap-text-muted: #64748b;
+  --ap-primary: #2563eb;       /* Rich Blue for buttons & header */
+  --ap-primary-hover: #1d4ed8;
+  --ap-danger: #ef4444;        /* Vibrant Red for Reset button */
+  --ap-danger-hover: #dc2626;
+  --ap-border: #cbd5e1;
+  --ap-radius: 12px;
+  --ap-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   Layout & Container Hierarchy
+   ========================================================================== */
+.ArchivePosting {
+  box-sizing: border-box;
+  font-family: var(--ap-font);
+  background-color: var(--ap-bg);
+  color: var(--ap-text-main);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.ArchivePosting *, 
+.ArchivePosting *::before, 
+.ArchivePosting *::after {
+  box-sizing: border-box;
+}
+
+.ArchivePosting_header {
+  margin-bottom: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ArchivePosting_eyebrow {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ap-primary);
+  font-weight: 700;
+}
+
+.ArchivePosting_title {
+  font-size: 2rem;
+  margin: 0.25rem 0 0.5rem 0;
+  color: #0f172a;
+}
+
+.ArchivePosting_subtitle {
+  margin: 0;
+  color: var(--ap-text-muted);
+  font-size: 1rem;
+}
+
+/* Two-column Layout: 45% left side form, 55% right side view list */
+.ArchivePosting_columns {
+  display: grid;
+  grid-template-columns: 4.5fr 5.5fr;
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ==========================================================================
+   Card Styling
+   ========================================================================== */
+.ArchivePosting_formCard,
+.ArchivePosting_listCard {
+  background: var(--ap-card-bg);
+  border-radius: var(--ap-radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  padding: 2rem;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.ArchivePosting_cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ArchivePosting_cardHead h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.ArchivePosting_editingPill {
+  background-color: #fef3c7;
+  color: #d97706;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Forms, Inputs, & Fields
+   ========================================================================== */
+.ArchivePosting_formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.ArchivePosting_field--span2 {
+  grid-column: span 2;
+}
+
+.ArchivePosting_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ArchivePosting_field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.ArchivePosting_required {
+  color: var(--ap-danger);
+}
+
+.ArchivePosting_field input[type="text"],
+.ArchivePosting_field input[type="number"],
+.ArchivePosting_field textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ap-border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--ap-text-main);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background-color: #fff;
+}
+
+.ArchivePosting_field input::placeholder,
+.ArchivePosting_field textarea::placeholder {
+  color: #94a3b8;
+}
+
+.ArchivePosting_field input:focus,
+.ArchivePosting_field textarea:focus {
+  outline: none;
+  border-color: var(--ap-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.ArchivePosting_field input.is-error,
+.ArchivePosting_field textarea.is-error {
+  border-color: var(--ap-danger);
+  background-color: #fef2f2;
+}
+
+.ArchivePosting_errorText {
+  color: var(--ap-danger);
+  font-size: 0.8rem;
+  margin-top: 0.1rem;
+}
+
+/* ==========================================================================
+   Custom Integrated File Upload Row
+   ========================================================================== */
+.ArchivePosting_fileRow {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f1f5f9;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+
+.ArchivePosting_fileBtn {
+  background-color: var(--ap-primary);
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: inline-block;
+  user-select: none;
+}
+
+.ArchivePosting_fileBtn:hover {
+  background-color: var(--ap-primary-hover);
+}
+
+.ArchivePosting_fileEmpty {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.ArchivePosting_fileChosen {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ap-text-main);
+  background: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.ArchivePosting_fileThumb {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+}
+
+.ArchivePosting_fileClear {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.ArchivePosting_fileClear:hover {
+  color: var(--ap-danger);
+  background-color: #fee2e2;
+}
+
+/* ==========================================================================
+   Buttons (Primary & Reset Actions)
+   ========================================================================== */
+.ArchivePosting_formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.ArchivePosting_btn {
+  flex: 1;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.ArchivePosting_btn:active {
+  transform: scale(0.98);
+}
+
+.ArchivePosting_btn--primary {
+  background-color: var(--ap-primary);
+  color: white;
+}
+
+.ArchivePosting_btn--primary:hover {
+  background-color: var(--ap-primary-hover);
+}
+
+.ArchivePosting_btn--danger {
+  background-color: var(--ap-danger);
+  color: white;
+}
+
+.ArchivePosting_btn--danger:hover {
+  background-color: var(--ap-danger-hover);
+}
+
+/* ==========================================================================
+   Search Input (Top Right)
+   ========================================================================== */
+.ArchivePosting_search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ArchivePosting_search input {
+  padding: 0.5rem 1rem 0.5rem 2.25rem;
+  border: 1px solid var(--ap-border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 220px;
+  transition: width 0.2s ease, border-color 0.15s;
+}
+
+.ArchivePosting_search input:focus {
+  outline: none;
+  border-color: var(--ap-primary);
+  width: 280px;
+}
+
+.ArchivePosting_search .ArchivePosting_icon {
+  position: absolute;
+  left: 0.75rem;
+  width: 16px;
+  height: 16px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Table & Presentation Layer
+   ========================================================================== */
+.ArchivePosting_tableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Custom modern scrollbars for inside lists */
+.ArchivePosting_tableWrap::-webkit-scrollbar {
+  height: 6px;
+}
+.ArchivePosting_tableWrap::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.ArchivePosting_tableWrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.ArchivePosting_table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+/* Exact Reference Header: Solid vibrant blue with white text */
+.ArchivePosting_table th {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.ArchivePosting_table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.ArchivePosting_table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Column Dimensions */
+.ArchivePosting_colSl { width: 60px; }
+.ArchivePosting_colImage { width: 80px; }
+.ArchivePosting_colCount { width: 100px; text-align: center; }
+.ArchivePosting_table th.ArchivePosting_colCount { text-align: center; }
+.ArchivePosting_colDate { width: 120px; }
+.ArchivePosting_colAction { width: 110px; }
+
+/* Table Elements Stylings */
+.ArchivePosting_thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #94a3b8;
+}
+
+.ArchivePosting_thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ArchivePosting_rowTitle {
+  display: block;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.2rem;
+}
+
+.ArchivePosting_rowDesc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ap-text-muted);
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ArchivePosting_countPill {
+  display: inline-block;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Action & Mini Control Row Buttons
+   ========================================================================== */
+.ArchivePosting_actions,
+.ArchivePosting_confirmRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ArchivePosting_confirmRow span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ap-danger);
+}
+
+.ArchivePosting_iconBtn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  padding: 0.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.ArchivePosting_iconBtn:hover {
+  background-color: #f1f5f9;
+  color: var(--ap-primary);
+  border-color: #cbd5e1;
+}
+
+.ArchivePosting_iconBtn--danger:hover {
+  background-color: #fee2e2;
+  color: var(--ap-danger);
+  border-color: #fca5a5;
+}
+
+.ArchivePosting_iconBtn--confirm {
+  background-color: #dcfce7;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+.ArchivePosting_iconBtn--confirm:hover {
+  background-color: #bbf7d0;
+  color: #166534;
+}
+
+.ArchivePosting_icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+}
+
+/* ==========================================================================
+   Empty Data State Styling (Matches the Graphic Loader concept)
+   ========================================================================== */
+.ArchivePosting_empty {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+}
+
+.ArchivePosting_emptyIcon {
+  width: 48px;
+  height: 48px;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.ArchivePosting_empty h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.15rem;
+  color: #475569;
+}
+
+.ArchivePosting_empty p {
+  margin: 0 auto 1.5rem auto;
+  font-size: 0.9rem;
+  color: var(--ap-text-muted);
+  max-width: 300px;
+}
+
+/* Loading/Status indicator strip at table bottom seen in the image mockup */
+.ArchivePosting_emptyBar {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: 4px;
+  background-color: #e2e8f0;
+  border-radius: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.ArchivePosting_emptyBarFill {
+  display: block;
+  width: 45%;
+  height: 100%;
+  background-color: var(--ap-primary);
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   Responsive View Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .ArchivePosting_columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .ArchivePosting {
+    padding: 1rem;
+  }
+  
+  .ArchivePosting_formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ArchivePosting_field--span2 {
+    grid-column: span 1;
+  }
+  
+  .ArchivePosting_formCard,
+  .ArchivePosting_listCard {
+    padding: 1.25rem;
+  }
+
+  .ArchivePosting_cardHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ArchivePosting_search, 
+  .ArchivePosting_search input {
+    width: 100%;
+  }
+
+  /* Structural block modification to prevent text crushing on small viewports */
+  .ArchivePosting_table, 
+  .ArchivePosting_table thead, 
+  .ArchivePosting_table tbody, 
+  .ArchivePosting_table th, 
+  .ArchivePosting_table td, 
+  .ArchivePosting_table tr { 
+    display: block; 
+  }
+  
+  .ArchivePosting_table thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .ArchivePosting_table tr {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #fff;
+  }
+  
+  .ArchivePosting_table td { 
+    border: none;
+    border-bottom: 1px solid #f1f5f9; 
+    position: relative;
+    padding-left: 40%; 
+    text-align: right;
+  }
+
+  .ArchivePosting_table td:last-child {
+    border-bottom: none;
+  }
+  
+  .ArchivePosting_table td:before { 
+    position: absolute;
+    left: 10px;
+    width: 35%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 700;
+    color: var(--ap-text-muted);
+    content: attr(data-label);
+  }
+
+  .ArchivePosting_thumb,
+  .ArchivePosting_rowDesc,
+  .ArchivePosting_actions,
+  .ArchivePosting_confirmRow {
+    margin-left: auto;
+  }
+  
+  .ArchivePosting_rowDesc {
+    max-width: 100%;
+  }
+}

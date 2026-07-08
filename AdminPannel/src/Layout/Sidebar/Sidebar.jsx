@@ -49,6 +49,11 @@ const Sidebar = ({
     icon: <FaEnvelope />,
     path: "/contact-management",
   },
+   {
+    title: "Archivment Posting ",
+    icon: <FaEnvelope />,
+    path: "/archive-management",
+  },
 ];
 
   return (

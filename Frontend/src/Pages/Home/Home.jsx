@@ -7,7 +7,7 @@ import Contact from '../../Components/Contact/Contact'
 import Events from '../../Components/Events/Events'
 import TeamManagement from '../../Components/TeamManagement/TeamManagement'
 import MainHeroSection from '../../Components/MainHeroSection/MainHeroSection'
-import Functions from '../../Components/Functions/Functions'
+import Functions from '../../Components/OCWA/OCWA'
 import NationalCommitteeMember from '../../Components/NationalCommitteeMember/NationalCommitteeMember'
 
 const Home = () => {

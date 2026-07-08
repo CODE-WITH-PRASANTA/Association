@@ -56,6 +56,14 @@ const IconArrow = ({ className }) => (
   </svg>
 );
 
+const IconFilmSlate = ({ className }) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+    <path d="M3 9.5l1.4-4.2a1.5 1.5 0 0 1 1.9-1L19 7.3a1.5 1.5 0 0 1 1 1.9L19.6 13" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <rect x="3" y="9.5" width="18" height="11" rx="1.8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M3 9.5l3.4-4.6M9 9.5l3-5.2M15 9.5l2.6-5.2" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+);
+
 /* ---------------------------------------------------------
    Component
 --------------------------------------------------------- */
@@ -70,7 +78,7 @@ const Events = () => {
       try {
         const res = await API.get("/events");
         // Limit to latest 3 events for front landing visual design if necessary
-        setEvents(res.data.slice(0, 3)); 
+        setEvents(res.data.slice(0, 3));
       } catch (error) {
         console.error("Error loading events for frontend layout:", error);
       } finally {
@@ -87,6 +95,7 @@ const Events = () => {
       <div className="events-section__bg" aria-hidden="true">
         <span className="events-section__glow events-section__glow--gold" />
         <span className="events-section__glow events-section__glow--crimson" />
+        <span className="events-section__grain" />
       </div>
 
       <div className="events-section__inner">
@@ -111,12 +120,27 @@ const Events = () => {
 
         {/* 3. Handle Loader UI State */}
         {loading ? (
-          <div style={{ textAlign: "center", color: "#b8862c", margin: "3rem 0" }}>
-            Loading Dynamic Events...
+          <div className="events-grid" aria-live="polite">
+            {[0, 1, 2].map((i) => (
+              <div
+                className="events-skeleton"
+                key={i}
+                style={{ "--delay": `${i * 0.1}s` }}
+              >
+                <div className="events-skeleton__media" />
+                <div className="events-skeleton__body">
+                  <div className="events-skeleton__line events-skeleton__line--sm" />
+                  <div className="events-skeleton__line events-skeleton__line--lg" />
+                  <div className="events-skeleton__line events-skeleton__line--md" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : events.length === 0 ? (
-          <div style={{ textAlign: "center", color: "#888", margin: "3rem 0" }}>
-            No current events listed. Check back soon!
+          <div className="events-empty">
+            <IconFilmSlate className="events-empty__icon" />
+            <h3>No current events listed</h3>
+            <p>Check back soon — new screenings and premieres are on the way.</p>
           </div>
         ) : (
           <div className="events-grid">
@@ -130,12 +154,14 @@ const Events = () => {
                   <span className="events-card__filmstrip" aria-hidden="true" />
 
                   {/* 4. Connect server file structure uploads securely */}
-                  <img
-                    src={`${IMG_URL}/uploads/${event.image}`}
-                    alt={event.title}
-                    className="events-card__image"
-                    loading="lazy"
-                  />
+                  <div className="events-card__imageFrame">
+                    <img
+                      src={`${IMG_URL}/uploads/${event.image}`}
+                      alt={event.title}
+                      className="events-card__image"
+                      loading="lazy"
+                    />
+                  </div>
 
                   <span className="events-card__badge">
                     {event.category ? event.category.toUpperCase() : "GENERAL"}
@@ -156,8 +182,14 @@ const Events = () => {
                     <span className="events-card__meta-item">
                       <IconCalendar className="events-card__meta-icon" />
                       {/* Format date gracefully if backend returns standard system timestamps */}
-                      {event.date ? new Date(event.date).toLocaleDateString('en-US', { month: 'SHORT', day: 'numeric' }).toUpperCase() : "TBD"}
+                      {event.date
+                        ? new Date(event.date)
+                            .toLocaleDateString("en-US", { month: "short", day: "numeric" })
+                            .toUpperCase()
+                        : "TBD"}
                     </span>
+
+                    <span className="events-card__meta-dot" aria-hidden="true" />
 
                     <span className="events-card__meta-item">
                       <IconClock className="events-card__meta-icon" />

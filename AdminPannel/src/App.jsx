@@ -11,6 +11,7 @@ import VideoPosting from "./Components/VideoPosting/VideoPosting";
 import EventManagement from "./Components/EventManagement/EventManagement";
 import TeamManagement from "./Components/TeamManagement/TeamManagement";
 import ContactPosting from "./Components/ContactPosting/ContactPosting";
+import ArchivePosting from "./Components/ArchivePosting/ArchivePosting";
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/event-management" element={<EventManagement />} />
         <Route path="/team-management" element={<TeamManagement />} />
         <Route path="/contact-management" element={<ContactPosting />} />
+        <Route path="/archive-management" element={<ArchivePosting/>}/>
 
          
         </Route>

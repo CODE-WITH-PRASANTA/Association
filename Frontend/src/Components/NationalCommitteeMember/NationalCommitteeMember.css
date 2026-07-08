@@ -1,24 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
 /* ==========================================================================
-   Structural Foundation Layout Controls
+   Design tokens — aligned with the OCWA brand (deep navy + orange + gold)
    ========================================================================== */
 .committeeContainerLayout {
+  --navy: #0c3d59;
+  --navy-deep: #082a3f;
+  --orange: #e8792f;
+  --gold: #c9a24b;
+  --ink: #16232c;
+  --muted: #6b7680;
+  --line: #e6ebee;
+  --surface-alt: #f6f9fa;
+
   width: 100%;
-<<<<<<< HEAD
-  max-width: 1240px;
-=======
-  
->>>>>>> af578ef9f03705eee5ada16ad14f53ab6e782772
   margin: 0 auto;
   padding: 15px 20px 100px 20px;
   box-sizing: border-box;
   background-color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> af578ef9f03705eee5ada16ad14f53ab6e782772
+.committeeContainerLayout *,
+.committeeContainerLayout *::before,
+.committeeContainerLayout *::after {
+  box-sizing: border-box;
+}
+
 /* --- Breadcrumb String Line Row --- */
 .headerBreadcrumbRow {
   display: flex;
@@ -30,22 +38,45 @@
   padding-left: 2px;
 }
 
-.bcMuted { color: #777777; }
-.bcHome { color: #333333; cursor: pointer; }
-.bcArrow { color: #b8c1cd; font-size: 0.6rem; margin: 0 2px; }
-.bcCurrent { color: #0c3d59; font-weight: 500; }
+.bcMuted { color: var(--muted); }
+.bcHome {
+  color: var(--navy);
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.bcHome:hover { color: var(--orange); }
+.bcArrow { color: var(--gold); font-size: 0.6rem; margin: 0 2px; }
+.bcCurrent { color: var(--navy); font-weight: 600; }
 
 /* ==========================================================================
    Header Banner Ribbon Block Component
    ========================================================================== */
 .nationalTitleRibbon {
   width: 100%;
-  background-color: #0c3d59; /* Target Deep Slate Teal Tone matching reference layout */
-  height: 52px;
+  background: linear-gradient(120deg, var(--navy-deep) 0%, var(--navy) 55%, #0f4a6b 100%);
+  height: 58px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
+  gap: 12px;
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 46px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(12, 61, 89, 0.22);
+}
+
+/* subtle diagonal sheen texture across the ribbon */
+.nationalTitleRibbon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.05) 0 2px,
+    transparent 2px 34px
+  );
+  pointer-events: none;
 }
 
 /* Accent bottom tag boundary edge marker */
@@ -56,15 +87,27 @@
   left: 0;
   width: 135px;
   height: 4px;
-  background-color: #00b050; /* Bright Green line accent base string */
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  border-radius: 0 4px 0 0;
+}
+
+.ribbonAccentDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 4px rgba(232, 121, 47, 0.25);
+  margin-left: 16px;
+  flex-shrink: 0;
 }
 
 .titleBadgeInner {
   color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  padding-left: 14px;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -75,27 +118,45 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 64px;
+  position: relative;
+  padding-bottom: 44px;
+}
+
+.presidentShowcaseSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
 }
 
 /* Saffron, White and Green Indian flag circular ring accent emulation */
 .presidentAvatarRing {
-  width: 160px;
-  height: 160px;
+  width: 172px;
+  height: 172px;
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .gradientBorderCircle {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 5px;
+  padding: 6px;
   box-sizing: border-box;
   background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #128807 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow:
+    0 0 0 6px #ffffff,
+    0 0 0 7px var(--line),
+    0 18px 34px rgba(12, 61, 89, 0.2);
 }
 
 .presidentImgProfile {
@@ -106,37 +167,96 @@
   background-color: #f7f9fa;
 }
 
+.presidentBadgeSeal {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(120deg, var(--orange), var(--gold));
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(232, 121, 47, 0.35);
+  white-space: nowrap;
+}
+
 .presidentLabelMeta {
-  border-bottom: 1px solid #0c3d59;
-  padding-bottom: 8px;
-  margin-bottom: 18px;
-  min-width: 160px;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  min-width: 180px;
 }
 
 .presDesignation {
-  font-size: 0.95rem;
-  color: #0c3d59;
-  font-weight: 500;
+  font-size: 0.98rem;
+  color: var(--navy);
+  font-weight: 700;
 }
 
 .presContactNum {
   font-size: 0.85rem;
-  color: #444444;
+  color: var(--muted);
   margin-top: 4px;
+  font-weight: 500;
 }
 
 .presidentFullIdentity {
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 800;
-  color: #0c3d59;
-  line-height: 1.4;
+  color: var(--navy);
+  line-height: 1.5;
   letter-spacing: 0.2px;
+  margin: 0;
 }
 
 .subTitleOffice {
   font-size: 0.85rem;
-  font-weight: 700;
-  color: #0c3d59;
+  font-weight: 600;
+  color: var(--muted);
+  display: inline-block;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Loading / Empty State Notices
+   ========================================================================== */
+.committeeStateNotice {
+  text-align: center;
+  margin: 3rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.committeeStateNotice--loading { color: var(--navy); }
+.committeeStateNotice--empty {
+  color: var(--muted);
+  background: var(--surface-alt);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  font-weight: 500;
+}
+
+.committeeSpinner {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid var(--line);
+  border-top-color: var(--orange);
+  animation: committeeSpin 0.8s linear infinite;
+}
+
+@keyframes committeeSpin {
+  to { transform: rotate(360deg); }
 }
 
 /* ==========================================================================
@@ -155,62 +275,94 @@
   flex-direction: column;
   background-color: #ffffff;
   box-sizing: border-box;
-  padding-bottom: 12px;
+  padding-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(12, 61, 89, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.committeeProfileCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 34px rgba(12, 61, 89, 0.16);
+  border-color: var(--gold);
 }
 
 .memberThumbnailContainer {
   width: 100%;
-<<<<<<< HEAD
-  height: 175px; /* Square proportions matching image file layouts */
-=======
   height: 300px; /* Square proportions matching image file layouts */
->>>>>>> af578ef9f03705eee5ada16ad14f53ab6e782772
   overflow: hidden;
-  background-color: #f0f3f5;
-  margin-bottom: 14px;
+  background-color: var(--surface-alt);
+  margin-bottom: 16px;
+  position: relative;
 }
 
 .memberThumbnailImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Image zoom feedback on profile interaction triggers */
 .committeeProfileCard:hover .memberThumbnailImage {
-  transform: scale(1.04);
+  transform: scale(1.07);
+}
+
+.memberThumbnailOverlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  background: linear-gradient(180deg, rgba(12, 61, 89, 0) 0%, rgba(12, 61, 89, 0.35) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.committeeProfileCard:hover .memberThumbnailOverlay {
+  opacity: 1;
 }
 
 .memberCardDetailsText {
   display: flex;
   flex-direction: column;
-  padding: 0 2px;
+  padding: 0 16px;
 }
 
 .memberRoleTitle {
-  font-size: 0.82rem;
-  color: #555555;
-  font-weight: 500;
-  margin-bottom: 6px;
+  font-size: 0.76rem;
+  color: var(--orange);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
   line-height: 1.3;
   min-height: 16px; /* Holds formatting alignment grid lines unbroken */
 }
 
 .memberActualName {
-  font-size: 0.84rem;
+  font-size: 0.98rem;
   font-weight: 800;
-  color: #0c3d59;
-  margin: 0 0 5px 0;
-  line-height: 1.3;
+  color: var(--navy);
+  margin: 0 0 6px 0;
+  line-height: 1.35;
   letter-spacing: -0.1px;
 }
 
 .memberMobileString {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: #0c3d59;
+  color: var(--navy);
   letter-spacing: 0.2px;
+}
+
+.memberRegdString {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 4px;
+  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -221,8 +373,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 2.5px;
-  background-color: #00b050; /* Matches active highlighting color palette */
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -252,7 +404,11 @@
   }
 
   .nationalTitleRibbon {
-    margin-bottom: 30px;
+    margin-bottom: 34px;
+  }
+
+  .presidentShowcaseSection {
+    margin-bottom: 48px;
   }
 
   .committeeMembersGrid {
@@ -261,7 +417,7 @@
   }
 
   .memberThumbnailContainer {
-    height: 190px; /* Expands height view ratio parameters on larger portable grids */
+    height: 220px; /* Expands height view ratio parameters on larger portable grids */
   }
 }
 
@@ -272,16 +428,20 @@
   }
 
   .nationalTitleRibbon {
-    height: 46px;
+    height: 50px;
+  }
+
+  .titleBadgeInner {
+    font-size: 1rem;
   }
 
   .presidentAvatarRing {
-    width: 140px;
-    height: 140px;
+    width: 148px;
+    height: 148px;
   }
 
   .presidentFullIdentity {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
   }
 
   .subTitleOffice {
@@ -291,11 +451,11 @@
   .committeeMembersGrid {
     grid-template-columns: 1fr; /* Drops into unified clean single-stack cards feed */
     gap: 28px 0;
-    max-width: 320px;
+    max-width: 340px;
     margin: 0 auto; /* Keeps card stacks cleanly centered */
   }
 
   .memberThumbnailContainer {
-    height: 220px; /* Perfect full horizontal width stretch balance */
+    height: 260px; /* Perfect full horizontal width stretch balance */
   }
 }

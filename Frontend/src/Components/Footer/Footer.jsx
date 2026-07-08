@@ -97,17 +97,17 @@ const Footer = () => {
 
           <p>
             <FaMapMarkerAlt />
-            Bhubaneswar, Odisha, India
+            At-Sanabad, P.O.-Pichukuli, Tahasil-Begunia, District-Khordha, Odisha - 752064, India.
           </p>
 
           <p>
             <FaPhoneAlt />
-            +91 98765 43210
+           +91 99374 68228
           </p>
 
           <p>
             <FaEnvelope />
-            support@yourwebsite.com
+            ocwa@yahoo. com
           </p>
 
         </div>
