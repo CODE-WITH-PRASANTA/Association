@@ -262,19 +262,19 @@ const ContactSection = () => (
     <div className="contact-grid">
       <div className="contact-card">
         <h3>Head Office</h3>
-        <p>Bhubaneswar, Odisha, India</p>
+        <p>Sanabad,Begunia, District-Khordha, Odisha - 752064, BBSR.</p>
       </div>
       <div className="contact-card">
         <h3>Email</h3>
-        <p>support@ocwa.org</p>
+        <p>ocwa@yahoo. com</p>
       </div>
       <div className="contact-card">
         <h3>Phone</h3>
-        <p>+91 674 000 0000</p>
+        <p>+91 99374 68228</p>
       </div>
       <div className="contact-card">
         <h3>Office Hours</h3>
-        <p>Mon – Sat, 10:00 AM – 6:30 PM IST</p>
+        <p>24HR</p>
       </div>
     </div>
 
