@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 
 import MainHeroSection from "../../Components/MainHeroSection/MainHeroSection";
@@ -10,6 +11,19 @@ import Functions from "../../Components/Functions/Functions";
 import NationalCommitteeMember from "../../Components/NationalCommitteeMember/NationalCommitteeMember";
 import TeamManagement from "../../Components/TeamManagement/TeamManagement";
 import Contact from "../../Components/Contact/Contact";
+=======
+import React from 'react'
+import HeroSection from '../../Components/HeroSection/HeroSection'
+import Abouthome from '../../Components/Abouthome/Abouthome'
+import Authority from '../../Components/Authority/Authority'
+import Archivement from '../../Components/Archivement/Archivement'
+import Contact from '../../Components/Contact/Contact'
+import Events from '../../Components/Events/Events'
+import TeamManagement from '../../Components/TeamManagement/TeamManagement'
+import MainHeroSection from '../../Components/MainHeroSection/MainHeroSection'
+import Functions from '../../Components/OCWA/OCWA'
+import NationalCommitteeMember from '../../Components/NationalCommitteeMember/NationalCommitteeMember'
+>>>>>>> 9e067f78f74b4fd3820753695afd5d0c74b1ea76
 
 const Home = () => {
   return (

@@ -29,15 +29,14 @@ const NationalCommitteeMember = () => {
     <div className="committeeContainerLayout">
       {/* Top Breadcrumb String Bar Component */}
       <div className="headerBreadcrumbRow">
-        <span className="bcMuted">You are here:</span>
-        <span className="bcHome">Home</span>
-        <span className="bcArrow">♦</span>
-        <span className="bcCurrent">AICWA National Committee Member</span>
+       
+       
       </div>
 
       {/* Primary Decorative Dark Teal Banner Block */}
       <div className="nationalTitleRibbon">
-        <div className="titleBadgeInner">NATIONAL COMMITTEE MEMBER</div>
+        <span className="ribbonAccentDot" />
+        <div className="titleBadgeInner">Odisha Committee Member</div>
       </div>
 
       {/* Centered Top Tier Core Head Executive Structure (President Block) */}
@@ -51,29 +50,31 @@ const NationalCommitteeMember = () => {
               className="presidentImgProfile" 
             />
           </div>
+          <span className="presidentBadgeSeal">President</span>
         </div>
         <div className="presidentLabelMeta">
-          <div className="presDesignation">President, AICWA</div>
-          <div className="presContactNum">9820 982 111</div>
+          <div className="presDesignation">President, OCWA</div>
+          <div className="presContactNum">+91 99374 68228</div>
         </div>
 
         <h2 className="presidentFullIdentity">
           ER. SURESH SHYAMLAL GUPTA <br />
           <span className="subTitleOffice">
             EMPLOYEES REPRESENTATIVE FILM, T.V. <br />
-            SERIAL, FIELD WORKERS & ARTISTS <br />
-            (GOVERNMENT OF MAHARASHTRA)
+            SERIAL, FIELD WORKERS &amp; ARTISTS <br />
+            (GOVERNMENT OF ODISHA)
           </span>
         </h2>
       </div>
 
       {/* Responsive Matrix Grid of Dynamic Database Members */}
       {loading ? (
-        <div style={{ textAlign: "center", color: "#005f73", margin: "3rem 0", fontSize: "1.2rem", fontWeight: "bold" }}>
+        <div className="committeeStateNotice committeeStateNotice--loading">
+          <span className="committeeSpinner" />
           Loading Committee Hierarchy Data...
         </div>
       ) : members.length === 0 ? (
-        <div style={{ textAlign: "center", color: "#666", margin: "3rem 0" }}>
+        <div className="committeeStateNotice committeeStateNotice--empty">
           No dynamic registry items found. Populate via administrative dashboard panel.
         </div>
       ) : (
@@ -89,6 +90,7 @@ const NationalCommitteeMember = () => {
                     e.target.src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=60";
                   }}
                 />
+                <span className="memberThumbnailOverlay" />
               </div>
               
               <div className="memberCardDetailsText">
@@ -98,7 +100,7 @@ const NationalCommitteeMember = () => {
                   <span className="memberMobileString">MOB: {member.mobile}</span>
                 )}
                 {member.regdNo && (
-                  <span style={{ fontSize: "11px", color: "#888", display: "block", marginTop: "2px" }}>
+                  <span className="memberRegdString">
                     REG: {member.regdNo}
                   </span>
                 )}

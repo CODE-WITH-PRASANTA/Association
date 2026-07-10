@@ -6,13 +6,14 @@ import Home from "./Pages/Home/Home";
 import EventDetails from "./Components/EventDetails/EventDetails";
 import FloatingIcons from "./Components/FloatingIcons/FloatingIcons";
 import ContactSection from "./Pages/ContactSection/ContactSection";
+import TopBar from "./Components/TopBar/TopBar";
 
 
 
 function App() {
   return (
     <BrowserRouter>
-
+<TopBar/>
       <Navbar />
 
       <Routes>

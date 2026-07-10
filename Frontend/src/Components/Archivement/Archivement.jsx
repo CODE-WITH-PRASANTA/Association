@@ -31,7 +31,6 @@ const ClapperIcon = () => (
   </svg>
 );
 
-
 const TrophyIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -72,8 +71,29 @@ const FilmstripIcon = () => (
   </svg>
 );
 
-const Archivement = () => {
+// ================= YouTube helpers (thumbnail extraction only — no logic removed elsewhere) =================
+// Pulls the 11-character YouTube video id out of either an embed URL or a normal watch/share URL.
+const getYouTubeId = (video) => {
+  const url = video?.embedUrl || video?.youtubeUrl || "";
+  const patterns = [
+    /embed\/([a-zA-Z0-9_-]{11})/,
+    /v=([a-zA-Z0-9_-]{11})/,
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+};
 
+// Returns a real static thumbnail image for the card view instead of loading a live iframe.
+const getYouTubeThumbnail = (video) => {
+  const id = getYouTubeId(video);
+  return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : "";
+};
+
+const Archivement = () => {
   const achievementRef = useRef(null);
   const galleryRef = useRef(null);
   const videoRef = useRef(null);
@@ -89,9 +109,29 @@ const Archivement = () => {
   // ================= Gallery API =================
 
   useEffect(() => {
-  fetchGallery();
-  fetchVideos();
-}, []);
+    fetchAchievements();
+    fetchGallery();
+    fetchVideos();
+  }, []);
+
+  const [achievementData, setAchievementData] = useState([]);
+
+  const fetchAchievements = async () => {
+    try {
+      const res = await API.get("/archive");
+
+      console.log("Achievements API:", res.data);
+
+      if (res.data.success && Array.isArray(res.data.archives)) {
+        setAchievementData(res.data.archives);
+      } else {
+        setAchievementData([]);
+      }
+    } catch (error) {
+      console.error("Error fetching achievements:", error);
+      setAchievementData([]);
+    }
+  };
 
   const fetchGallery = async () => {
     try {
@@ -104,14 +144,14 @@ const Archivement = () => {
   };
 
   const fetchVideos = async () => {
-  try {
-    const res = await API.get("/videos");
+    try {
+      const res = await API.get("/videos");
 
-    setVideos(res.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+      setVideos(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // ================= Existing Function =================
 
   const scrollToSection = (ref) => {
@@ -190,60 +230,10 @@ const Archivement = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [closeOverlays]);
 
-  const achievementData = [
-    {
-      seal: "🎬",
-      eyebrow: "Ref. AICWA/118/2021",
-      title: "Appointed General Secretary — Odisha",
-      text: "Named General Secretary of the All Indian Cine Workers Association, entrusted with coordinating the state's cine workers, artists, and associates within the wider film fraternity.",
-      detail:
-        "The appointment letter, issued by AICWA's President on 26 August 2021, formally recognizes this role as part of the association's mission to become a global voice for cine workers and artists across the industry.",
-    },
-    {
-      seal: "📜",
-      eyebrow: "Reg. No. 8442-22 · 2016–17",
-      title: "Society Registered Under Act XXI of 1860",
-      text: "Successfully registered the Odisha Cine Workers Association (OCWA) under the Societies Registration Act, granting it formal legal standing in the state of Odisha.",
-      detail:
-        "Certified by the Additional Registrar of Societies, Khordha, on 1 September 2016 — establishing OCWA as a recognized body based in Sanabad, Bolagarh, Khordha.",
-    },
-    {
-      seal: "🤝",
-      eyebrow: "Film Fraternity",
-      title: "Statewide Coordination",
-      text: "Built and maintained working relationships across Odisha's film community, aligning cine workers, artists, and association members under one banner.",
-      detail:
-        "Ongoing coordination work spans outreach, membership support, and representation of cine workers' interests at the state level.",
-    },
-    {
-      seal: "🌍",
-      eyebrow: "Vision",
-      title: "Toward a Global Standard",
-      text: "Contributed to AICWA's broader ambition of becoming a global leader in advocating for cine workers, artists, and associates industry-wide.",
-      detail:
-        "This work supports the association's long-term goal of raising standards and representation for cine workers beyond state borders.",
-    },
-    {
-      seal: "🏛️",
-      eyebrow: "Governance",
-      title: "Association Leadership",
-      text: "Took on a governing role within OCWA's structure, helping steer the organization's mission since its founding in 2016.",
-      detail:
-        "Leadership responsibilities include upholding the association's registered objectives and supporting its members across the district.",
-    },
-    {
-      seal: "🎖️",
-      eyebrow: "Recognition",
-      title: "Trusted by the Association",
-      text: "Recognized by AICWA's leadership as a valued contributor to the film fraternity, welcomed formally into the association's ranks.",
-      detail:
-        "The role reflects confidence placed by AICWA's President and governing body in continued, mutually beneficial collaboration.",
-    },
-  ];
-
- 
-
   const [videos, setVideos] = useState([]);
+
+  const activeAchievementData =
+    activeAchievement !== null ? achievementData[activeAchievement] : null;
 
   return (
     <div className="Archivement">
@@ -276,6 +266,9 @@ const Archivement = () => {
               <strong>Achievements</strong>
               <em>Honors &amp; certificates</em>
             </span>
+            {achievementData.length > 0 && (
+              <span className="Archivement_navCount">{achievementData.length}</span>
+            )}
             <span className="Archivement_navGlow" />
           </button>
 
@@ -290,6 +283,9 @@ const Archivement = () => {
               <strong>Gallery</strong>
               <em>Moments captured</em>
             </span>
+            {galleryImages.length > 0 && (
+              <span className="Archivement_navCount">{galleryImages.length}</span>
+            )}
             <span className="Archivement_navGlow" />
           </button>
 
@@ -304,6 +300,9 @@ const Archivement = () => {
               <strong>Videos</strong>
               <em>Watch highlights</em>
             </span>
+            {videos.length > 0 && (
+              <span className="Archivement_navCount">{videos.length}</span>
+            )}
             <span className="Archivement_navGlow" />
           </button>
         </nav>
@@ -325,28 +324,78 @@ const Archivement = () => {
           <div className="Archivement_curtainHeader">
             <span className="Archivement_curtainPanel left" />
             <span className="Archivement_curtainPanel right" />
+            <span className="Archivement_curtainEyebrow">Honor Roll</span>
             <h2>
               Achievements <span className="Archivement_headline_gold">&amp; Honors</span>
             </h2>
+            {achievementData.length > 0 && (
+              <span className="Archivement_curtainMeta">
+                {achievementData.length} entries in the archive
+              </span>
+            )}
           </div>
 
-          <div className="Archivement_cardGrid">
-            {achievementData.map((item, index) => (
-              <button
-                type="button"
-                className="Archivement_card"
-                key={index}
-                style={{ "--delay": `${index * 0.08}s` }}
-                onClick={() => setActiveAchievement(index)}
-              >
-                <span className="Archivement_cardSeal">{item.seal}</span>
-                <span className="Archivement_cardEyebrow">{item.eyebrow}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <span className="Archivement_cardCta">View certificate details →</span>
-              </button>
-            ))}
-          </div>
+          {achievementData.length === 0 ? (
+            <div className="Archivement_emptyState">
+              <span className="Archivement_emptyGlyph">🏆</span>
+              <p>No achievements have been archived yet.</p>
+            </div>
+          ) : (
+            <div className="Archivement_cardGrid">
+              {Array.isArray(achievementData) &&
+                achievementData.map((item, index) => (
+                  <button
+                    type="button"
+                    className="Archivement_card"
+                    key={item._id}
+                    style={{ "--delay": `${index * 0.08}s` }}
+                    onClick={() => setActiveAchievement(index)}
+                  >
+                    <span className="Archivement_cardEyebrowRow">
+                      <span className="Archivement_cardEyebrow">
+                        Archive #{item.count}
+                      </span>
+                      <span className="Archivement_cardSeal">🏆</span>
+                    </span>
+
+                    {/* Achievement Image */}
+                    <span className="Archivement_cardImageFrame">
+                      {item.image ? (
+                        <img
+                          className="Archivement_cardImage"
+                          src={
+                            item.image?.startsWith("http")
+                              ? item.image
+                              : `${IMG_URL}/${item.image}`
+                          }
+                          alt={item.title}
+                          loading="lazy"
+                          onError={(e) => {
+                            console.log("Image URL:", e.target.src);
+                            e.target.src = "/no-image.png";
+                          }}
+                        />
+                      ) : (
+                        <span className="Archivement_cardImageFallback">
+                          <TrophyIcon />
+                        </span>
+                      )}
+                    </span>
+
+                    <h3>{item.title}</h3>
+
+                    <p>{item.description}</p>
+
+                    <span className="Archivement_cardCta">
+                      View Details
+                      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                  </button>
+                ))}
+            </div>
+          )}
         </section>
 
         {/* Gallery */}
@@ -356,34 +405,40 @@ const Archivement = () => {
             revealedSections.gallery ? "is-revealed" : ""
           }`}
         >
-          <h2>Gallery</h2>
-
-          <div className="Archivement_gallery">
-          {galleryImages.map((item, index) => (
-
-<div
-  className="Archivement_galleryCard"
-  key={item._id}
-  style={{ "--delay": `${index * 0.06}s` }}
-  onClick={() => setActiveImageIndex(index)}
->
-
-<img
-src={`${IMG_URL}/uploads/${item.image}`}
-alt="Gallery"
-loading="lazy"
-/>
-
-<div className="Archivement_galleryOverlay">
-
-<span>🔍 View</span>
-
-</div>
-
-</div>
-
-))}
+          <div className="Archivement_sectionHeader">
+            <span className="Archivement_sectionEyebrow">Visual Archive</span>
+            <h2>Gallery</h2>
           </div>
+
+          {galleryImages.length === 0 ? (
+            <div className="Archivement_emptyState">
+              <span className="Archivement_emptyGlyph">🖼️</span>
+              <p>No gallery photos have been uploaded yet.</p>
+            </div>
+          ) : (
+            <div className="Archivement_gallery">
+              {galleryImages.map((item, index) => (
+                <div
+                  className="Archivement_galleryCard"
+                  key={item._id}
+                  style={{ "--delay": `${index * 0.06}s` }}
+                  onClick={() => setActiveImageIndex(index)}
+                >
+                  <div className="Archivement_galleryCardFrame">
+                    <img
+                      src={`${IMG_URL}/uploads/${item.image}`}
+                      alt="Gallery"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <div className="Archivement_galleryOverlay">
+                    <span>🔍 View</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Videos */}
@@ -393,58 +448,62 @@ loading="lazy"
             revealedSections.videos ? "is-revealed" : ""
           }`}
         >
-          <h2>Videos</h2>
-
-          <div className="Archivement_videoGrid">
-           {videos.map((video, index) => (
-
-<div
-  className="Archivement_videoCard"
-  key={video._id}
-  style={{ "--delay": `${index * 0.08}s` }}
->
-
-  <div
-    className="Archivement_videoThumbWrap"
-    onClick={() => setActiveVideo(video)}
-  >
-
-    <iframe
-      src={video.embedUrl}
-      title={video.youtubeUrl}
-      className="Archivement_videoThumb"
-      allowFullScreen
-    />
-
-    <span className="Archivement_playButton">
-      ▶
-    </span>
-
-  </div>
-
-  <div className="Archivement_videoContent">
-
-    <h3>
-      YouTube Video
-    </h3>
-
-    <button
-      onClick={() => setActiveVideo(video)}
-    >
-      ▶ Watch Video
-    </button>
-
-  </div>
-
-</div>
-
-))}
+          <div className="Archivement_sectionHeader">
+            <span className="Archivement_sectionEyebrow">On Screen</span>
+            <h2>Videos</h2>
           </div>
+
+          {videos.length === 0 ? (
+            <div className="Archivement_emptyState">
+              <span className="Archivement_emptyGlyph">🎬</span>
+              <p>No videos have been added yet.</p>
+            </div>
+          ) : (
+            <div className="Archivement_videoGrid">
+              {videos.map((video, index) => (
+                <div
+                  className="Archivement_videoCard"
+                  key={video._id}
+                  style={{ "--delay": `${index * 0.08}s` }}
+                >
+                  <div
+                    className="Archivement_videoThumbWrap"
+                    onClick={() => setActiveVideo(video)}
+                  >
+                    <img
+                      src={getYouTubeThumbnail(video)}
+                      alt={video.title || "YouTube video thumbnail"}
+                      className="Archivement_videoThumb"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = `https://i.ytimg.com/vi/${getYouTubeId(
+                          video
+                        )}/mqdefault.jpg`;
+                      }}
+                    />
+
+                    <span className="Archivement_videoBadge">YouTube</span>
+
+                    <span className="Archivement_playButton">▶</span>
+                  </div>
+
+                  <div className="Archivement_videoContent">
+                    <h3>{video.title || "YouTube Video"}</h3>
+
+                    <button onClick={() => setActiveVideo(video)}>
+                      ▶ Watch Video
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       </div>
 
       {/* Achievement detail overlay */}
-      {activeAchievement !== null && (
+      {activeAchievementData && (
         <div className="Archivement_overlay" onClick={closeOverlays}>
           <div
             className="Archivement_overlayCard"
@@ -453,17 +512,38 @@ loading="lazy"
             <button className="Archivement_overlayClose" onClick={closeOverlays}>
               ✕
             </button>
-            <span className="Archivement_overlaySeal">
-              {achievementData[activeAchievement].seal}
-            </span>
+
+            {activeAchievementData.image && (
+              <div className="Archivement_overlayImageFrame">
+                <img
+                  src={
+                    activeAchievementData.image?.startsWith("http")
+                      ? activeAchievementData.image
+                      : `${IMG_URL}/${activeAchievementData.image}`
+                  }
+                  alt={activeAchievementData.title}
+                  onError={(e) => {
+                    e.target.src = "/no-image.png";
+                  }}
+                />
+              </div>
+            )}
+
+            <span className="Archivement_overlaySeal">🏆</span>
+
             <span className="Archivement_cardEyebrow">
-              {achievementData[activeAchievement].eyebrow}
+              Archive #{activeAchievementData.count}
             </span>
-            <h3>{achievementData[activeAchievement].title}</h3>
-            <p>{achievementData[activeAchievement].text}</p>
-            <p className="Archivement_overlayDetail">
-              {achievementData[activeAchievement].detail}
-            </p>
+
+            <h3>{activeAchievementData.title}</h3>
+
+            <p>{activeAchievementData.description}</p>
+
+            {activeAchievementData.notes && (
+              <p className="Archivement_overlayDetail">
+                {activeAchievementData.notes}
+              </p>
+            )}
           </div>
         </div>
       )}
@@ -480,7 +560,7 @@ loading="lazy"
             </button>
             <div className="Archivement_lightboxFrame">
               <img
-              src={`${IMG_URL}/uploads/${galleryImages[activeImageIndex]?.image}`}
+                src={`${IMG_URL}/uploads/${galleryImages[activeImageIndex]?.image}`}
                 alt=""
               />
             </div>
@@ -503,13 +583,13 @@ loading="lazy"
             </button>
             <div className="Archivement_videoFrameWrap">
               <iframe
-               src={`${activeVideo.embedUrl}?autoplay=1`}
+                src={`${activeVideo.embedUrl}?autoplay=1`}
                 title={activeVideo.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             </div>
-           <h3>YouTube Video</h3>
+            <h3>{activeVideo.title || "YouTube Video"}</h3>
           </div>
         </div>
       )}
