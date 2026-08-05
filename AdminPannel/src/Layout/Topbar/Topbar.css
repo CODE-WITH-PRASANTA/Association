@@ -1,266 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap');
+
 /* =====================================
-TOPBAR
+           CINEMATIC TOPBAR
 ===================================== */
 
-.Topbar{
-
-width:100%;
-
-min-width:0;
-
-height:70px;
-
-position:sticky;
-
-top:0;
-
-z-index:50;
-
-background:#fff;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:0 20px;
-
-box-sizing:border-box;
-
+.Topbar {
+  width: 100%;
+  min-width: 0;
+  height: 85px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 28px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
 }
 
 /* =====================================
-LEFT
+               LEFT SECTION
 ===================================== */
 
-.Topbar-left{
-    display:flex;
-    align-items:center;
+.Topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.Topbar-toggle{
-    width:46px;
-    height:46px;
-    border:none;
-    border-radius:12px;
-    background:#f4f6fb;
-    cursor:pointer;
-    font-size:21px;
-    transition:.3s;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.Topbar-toggle {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: #111111;
+  color: #FFB800;
+  cursor: pointer;
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.Topbar-toggle:hover{
-    background:#2563eb;
-    color:#fff;
-    transform:rotate(90deg);
+.Topbar-toggle:hover {
+  border-color: #FFB800;
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.3);
+}
+
+/* SEARCH BOX */
+.Topbar-searchBox {
+  width: 420px;
+  height: 44px;
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.Topbar-searchBox:focus-within {
+  border-color: #FFB800;
+  box-shadow: 0 0 18px rgba(255, 184, 0, 0.35);
+  background: #111111;
+}
+
+.Topbar-searchIcon {
+  color: #A8A8A8;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Topbar-searchBox:focus-within .Topbar-searchIcon {
+  color: #FFB800;
+}
+
+.Topbar-searchInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.Topbar-searchInput::placeholder {
+  color: #A8A8A8;
+  font-weight: 300;
 }
 
 /* =====================================
-RIGHT
+              RIGHT SECTION
 ===================================== */
 
-.Topbar-right{
-    display:flex;
-    align-items:center;
-    gap:25px;
+.Topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+/* REEL ACCENT */
+.Topbar-reelWrapper {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Topbar-reelIcon {
+  font-size: 22px;
+  color: #FFB800;
+  filter: drop-shadow(0 0 6px rgba(255, 184, 0, 0.4));
+}
+
+/* NOTIFICATION */
+.Topbar-notification {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #111111;
+  color: #ffffff;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  transition: border-color 0.3s;
+}
+
+.Topbar-notification:hover {
+  border-color: #FFB800;
+  color: #FFD54F;
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.25);
+}
+
+.Topbar-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #FF4D4F;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 0 10px rgba(255, 77, 79, 0.6);
+  border: 2px solid #050505;
+}
+
+/* PROFILE */
+.Topbar-profile {
+  position: relative;
+}
+
+.Topbar-profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 30px;
+  transition: background 0.3s;
+}
+
+.Topbar-avatarWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Topbar-profileImage {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #FFB800;
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.Topbar-profileInfo:hover .Topbar-profileImage {
+  box-shadow: 0 0 25px rgba(255, 184, 0, 0.6);
+}
+
+.Topbar-profileText h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.Topbar-profileText span {
+  font-size: 12px;
+  color: #A8A8A8;
+  font-weight: 400;
 }
 
 /* =====================================
-NOTIFICATION
+              DROPDOWN
 ===================================== */
 
-.Topbar-notification{
-    width:46px;
-    height:46px;
-    border:none;
-    background:#f4f6fb;
-    border-radius:50%;
-    position:relative;
-    cursor:pointer;
-    transition:.3s;
-    font-size:18px;
+.Topbar-dropdown {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 210px;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 184, 0, 0.15);
+  overflow: hidden;
+  padding: 8px 0;
+  z-index: 100;
 }
 
-.Topbar-notification:hover{
-    background:#2563eb;
-    color:#fff;
+.Topbar-dropdownItem {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #A8A8A8;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.25s ease;
 }
 
-.Topbar-badge{
-    position:absolute;
-    top:-3px;
-    right:-3px;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    background:#ef4444;
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:11px;
-    font-weight:600;
+.dropdown-icon {
+  font-size: 16px;
+  color: #FFB800;
+}
+
+.Topbar-dropdownItem:hover {
+  background: rgba(255, 184, 0, 0.1);
+  color: #FFD54F;
+  padding-left: 24px;
+}
+
+.Topbar-dropdownItem.logout {
+  color: #FF4D4F;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 4px;
+}
+
+.Topbar-dropdownItem.logout .dropdown-icon {
+  color: #FF4D4F;
+}
+
+.Topbar-dropdownItem.logout:hover {
+  background: rgba(255, 77, 79, 0.1);
+  color: #FF4D4F;
 }
 
 /* =====================================
-PROFILE
+           RESPONSIVE BREAKPOINTS
 ===================================== */
 
-.Topbar-profile{
-    position:relative;
+@media (max-width: 1024px) {
+  .Topbar-searchBox {
+    width: 260px;
+  }
 }
 
-.Topbar-profileInfo{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    cursor:pointer;
+@media (max-width: 992px) {
+  .Topbar {
+    padding: 0 20px;
+  }
+  .Topbar-profileText {
+    display: none;
+  }
+  .Topbar-searchBox {
+    width: 200px;
+  }
 }
 
-.Topbar-profileImage{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid #2563eb;
+@media (max-width: 768px) {
+  .Topbar {
+    height: 75px;
+    padding: 0 16px;
+  }
+  .Topbar-searchBox,
+  .Topbar-reelWrapper {
+    display: none;
+  }
+  .Topbar-right {
+    gap: 14px;
+  }
+  .Topbar-profileImage {
+    width: 45px;
+    height: 45px;
+  }
+  .Topbar-dropdown {
+    width: 190px;
+  }
 }
 
-.Topbar-profileText h4{
-    margin:0;
-    font-size:15px;
-    color:#1e293b;
-}
-
-.Topbar-profileText span{
-    font-size:13px;
-    color:#64748b;
-}
-
-/* =====================================
-DROPDOWN
-===================================== */
-
-.Topbar-dropdown{
-    position:absolute;
-    top:72px;
-    right:0;
-    width:220px;
-    background:#fff;
-    border-radius:15px;
-    box-shadow:0 20px 40px rgba(0,0,0,.15);
-    overflow:hidden;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(20px);
-    transition:.35s;
-}
-
-.Topbar-dropdown.show{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-}
-
-.Topbar-dropdownItem{
-    width:100%;
-    border:none;
-    background:none;
-    padding:17px 22px;
-    display:flex;
-    align-items:center;
-    gap:15px;
-    cursor:pointer;
-    font-size:15px;
-    transition:.25s;
-}
-
-.Topbar-dropdownItem:hover{
-    background:#f3f4f6;
-}
-
-.Topbar-dropdownItem.logout{
-    color:#ef4444;
-}
-
-.Topbar-dropdownItem.logout:hover{
-    background:#fee2e2;
-}
-
-/* =====================================
-TABLET
-===================================== */
-
-@media(max-width:992px){
-
-.Topbar{
-    padding:0 22px;
-}
-
-.Topbar-profileText{
-    display:none;
-}
-
-}
-
-/* =====================================
-MOBILE
-===================================== */
-
-@media(max-width:768px){
-
-.Topbar{
-    height:70px;
-    padding:0 16px;
-}
-
-.Topbar-right{
-    gap:15px;
-}
-
-.Topbar-profileImage{
-    width:42px;
-    height:42px;
-}
-
-.Topbar-dropdown{
-    width:200px;
-}
-
-}
-
-/* =====================================
-SMALL MOBILE
-===================================== */
-
-@media(max-width:480px){
-
-.Topbar{
-    padding:0 12px;
-}
-
-.Topbar-toggle{
-    width:42px;
-    height:42px;
-    font-size:18px;
-}
-
-.Topbar-notification{
-    width:42px;
-    height:42px;
-}
-
-.Topbar-profileImage{
-    width:38px;
-    height:38px;
-}
-
-.Topbar-dropdown{
-    right:-5px;
-    width:185px;
-}
-
+@media (max-width: 480px) {
+  .Topbar {
+    padding: 0 12px;
+  }
+  .Topbar-toggle,
+  .Topbar-notification {
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+  }
+  .Topbar-profileImage {
+    width: 40px;
+    height: 40px;
+  }
 }
