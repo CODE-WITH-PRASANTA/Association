@@ -1,5 +1,5 @@
 /* ===========================
-   MAIN HERO SECTION
+   MAIN HERO SECTION — PERFECT ASPECT FIT (FULL COVERAGE)
 =========================== */
 
 * {
@@ -12,18 +12,22 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  background: #fff;
+  background: #0b0f19;
 }
 
 .heroSlider {
   width: 100%;
-  height: 640px;
+  /* Uses dynamic aspect ratio based on wide event banners so the height adjusts perfectly */
+  aspect-ratio: 16 / 6;
+  min-height: 400px;
+  max-height: 720px;
   position: relative;
   overflow: hidden;
+  background: #050811;
 }
 
 /* ===========================
-   Slides
+   Slides & Smooth Transitions
 =========================== */
 
 .heroSlide {
@@ -32,7 +36,9 @@
   opacity: 0;
   visibility: hidden;
   transform: scale(1.03);
-  transition: all .8s ease;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 1s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.8s ease;
 }
 
 .heroSlide.active {
@@ -42,320 +48,287 @@
   z-index: 2;
 }
 
+/* Main Image: Spans 100% width and height cleanly */
 .heroSlide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Focuses cropping vertically towards the top-center where faces/people are centered */
+  object-position: center 30%; 
   display: block;
   user-select: none;
   pointer-events: none;
 }
 
-/* Dark Overlay */
-
+/* Subtle Gradient Overlay for Text Visibility */
 .heroSlide::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-      90deg,
-      rgba(0,0,0,.15),
-      rgba(0,0,0,0),
-      rgba(0,0,0,.08)
+    180deg,
+    rgba(5, 12, 26, 0.1) 0%,
+    rgba(5, 12, 26, 0.25) 50%,
+    rgba(5, 12, 26, 0.8) 100%
   );
+  z-index: 3;
 }
 
 /* ===========================
-   Arrows
+   Content Overlay & Glassmorphism Text
+=========================== */
+
+.heroContentOverlay {
+  position: absolute;
+  bottom: 40px;
+  left: 50px;
+  right: 50px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.heroTextContainer {
+  background: rgba(10, 15, 30, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px 24px;
+  border-radius: 12px;
+  max-width: 620px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.heroSlide.active .heroTextContainer {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.heroTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  font-family: system-ui, -apple-system, sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.heroSubtitle {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.4;
+}
+
+@keyframes slideUpFade {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===========================
+   Controls & Navigation
 =========================== */
 
 .heroArrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 58px;
-  height: 58px;
-  border: none;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
   cursor: pointer;
-  background: rgba(20,52,122,.95);
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(8px);
   color: #fff;
-  font-size: 34px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 20;
-  transition: .35s;
+  transition: all 0.3s ease;
 }
 
 .heroArrow:hover {
-  background: #1f4fd5;
+  background: #2563eb;
+  border-color: #2563eb;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
 }
 
 .heroArrow.left {
-  left: 22px;
+  left: 24px;
 }
 
 .heroArrow.right {
-  right: 22px;
+  right: 24px;
 }
-
-/* ===========================
-   Circle Pagination
-=========================== */
 
 .heroDots {
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 25px;
+  right: 50px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   z-index: 30;
+  background: rgba(10, 15, 30, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .heroDots button {
-  width: 14px;
-  height: 14px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 2px solid #fff;
-  background: transparent;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
-  transition: .35s;
+  transition: all 0.35s ease;
 }
 
 .heroDots button:hover {
-  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .heroDots button.active {
-  width: 15px;
-  height: 15px;
-  background: #ffffff;
-  box-shadow: 0 0 12px rgba(255,255,255,.9);
+  width: 22px;
+  border-radius: 6px;
+  background: #3b82f6;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
 }
 
 /* ===========================
-   Thumbnail Preview
+   Responsive Adjustments
 =========================== */
 
-.heroThumb {
-  position: absolute;
-  right: 28px;
-  bottom: 28px;
-  width: 230px;
-  height: 130px;
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 20;
-  background: #fff;
-  box-shadow: 0 12px 35px rgba(0,0,0,.25);
+@media (max-width: 1200px) {
+  .heroSlider {
+    aspect-ratio: 16 / 7;
+    min-height: 360px;
+  }
 }
 
-.heroThumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: .5s;
-}
-
-.heroThumb:hover img {
-  transform: scale(1.05);
-}
-
-/* ===========================
-   Animation
-=========================== */
-
-@keyframes fadeHero {
-
-  from {
-    opacity: 0;
-    transform: scale(1.05);
+@media (max-width: 992px) {
+  .heroSlider {
+    aspect-ratio: 16 / 8;
+    min-height: 320px;
   }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .heroContentOverlay {
+    bottom: 30px;
+    left: 25px;
+    right: 25px;
   }
 
+  .heroTextContainer {
+    padding: 14px 18px;
+    max-width: 480px;
+  }
+
+  .heroTitle {
+    font-size: 1.3rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.85rem;
+  }
+
+  .heroArrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .heroArrow.left {
+    left: 15px;
+  }
+
+  .heroArrow.right {
+    right: 15px;
+  }
+
+  .heroDots {
+    right: 25px;
+    bottom: 20px;
+  }
 }
 
-.heroSlide.active {
-  animation: fadeHero .8s ease;
+@media (max-width: 768px) {
+  .heroSlider {
+    aspect-ratio: 16 / 9;
+    min-height: 260px;
+  }
+
+  .heroContentOverlay {
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+  }
+
+  .heroTextContainer {
+    padding: 10px 14px;
+  }
+
+  .heroTitle {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+  }
+
+  .heroSubtitle {
+    font-size: 0.8rem;
+  }
+
+  .heroArrow {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .heroDots {
+    right: 15px;
+    bottom: 15px;
+  }
 }
 
-/* ===========================
-   Large Desktop
-=========================== */
+@media (max-width: 480px) {
+  .heroSlider {
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
+  }
 
-@media (max-width:1600px){
+  .heroTextContainer {
+    padding: 8px 12px;
+  }
 
-.heroSlider{
-height:600px;
-}
+  .heroTitle {
+    font-size: 0.9rem;
+  }
 
-}
+  .heroSubtitle {
+    display: none;
+  }
 
-/* ===========================
-   Laptop
-=========================== */
+  .heroArrow {
+    display: none;
+  }
 
-@media (max-width:1400px){
-
-.heroSlider{
-height:540px;
-}
-
-.heroThumb{
-width:210px;
-height:118px;
-}
-
-}
-
-/* ===========================
-   Tablet
-=========================== */
-
-@media (max-width:992px){
-
-.heroSlider{
-height:430px;
-}
-
-.heroArrow{
-width:48px;
-height:48px;
-font-size:28px;
-}
-
-.heroArrow.left{
-left:12px;
-}
-
-.heroArrow.right{
-right:12px;
-}
-
-.heroThumb{
-width:170px;
-height:95px;
-bottom:18px;
-right:18px;
-}
-
-.heroDots{
-bottom:18px;
-}
-
-}
-
-/* ===========================
-   Mobile
-=========================== */
-
-@media (max-width:768px){
-
-.heroSlider{
-height:300px;
-}
-
-.heroArrow{
-width:42px;
-height:42px;
-font-size:24px;
-}
-
-.heroThumb{
-width:120px;
-height:72px;
-bottom:15px;
-right:15px;
-}
-
-.heroDots{
-gap:8px;
-bottom:12px;
-}
-
-.heroDots button{
-width:11px;
-height:11px;
-}
-
-.heroDots button.active{
-width:11px;
-height:11px;
-}
-
-}
-
-/* ===========================
-   Small Mobile
-=========================== */
-
-@media (max-width:576px){
-
-.heroSlider{
-height:240px;
-}
-
-.heroArrow{
-width:36px;
-height:36px;
-font-size:20px;
-}
-
-.heroArrow.left{
-left:8px;
-}
-
-.heroArrow.right{
-right:8px;
-}
-
-.heroThumb{
-width:95px;
-height:56px;
-right:10px;
-bottom:10px;
-}
-
-.heroDots{
-bottom:10px;
-gap:7px;
-}
-
-.heroDots button{
-width:9px;
-height:9px;
-}
-
-}
-
-/* ===========================
-   Extra Small
-=========================== */
-
-@media (max-width:400px){
-
-.heroSlider{
-height:210px;
-}
-
-.heroThumb{
-display:none;
-}
-
-.heroArrow{
-width:34px;
-height:34px;
-font-size:18px;
-}
-
-.heroDots{
-bottom:8px;
-}
-
+  .heroDots {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    bottom: 10px;
+  }
 }
