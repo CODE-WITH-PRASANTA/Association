@@ -11,6 +11,7 @@ import slide7 from "../../assets/Acossiation7.webp";
 import slide8 from "../../assets/Acossiation8.webp";
 import slide9 from "../../assets/Acossiation9.webp";
 import slide10 from "../../assets/Acossiation10.webp";
+import slide11 from "../../assets/Acossiation11.webp";
 
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -72,6 +73,12 @@ const slides = [
   {
     id: 10,
     image: slide10,
+    title: "Leadership & Panel Discussions",
+    subtitle: "Guiding the future and vision of regional entertainment.",
+  },
+  {
+    id: 11,
+    image: slide11,
     title: "Leadership & Panel Discussions",
     subtitle: "Guiding the future and vision of regional entertainment.",
   },

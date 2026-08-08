@@ -6,6 +6,15 @@ import Auth2 from "../../assets/Auth2.webp";
 import Auth3 from "../../assets/Auth3.webp";
 import Auth4 from "../../assets/Auth4.webp";
 import Auth5 from "../../assets/Auth5.webp";
+import Auth6 from "../../assets/Auth6.webp";
+import Auth7 from "../../assets/Auth7.webp";
+import Auth8 from "../../assets/Auth8.webp";
+import Auth9 from "../../assets/Auth9.webp";
+import Auth10 from "../../assets/Auth10.webp";
+import Auth11 from "../../assets/Auth11.webp";
+import Auth12 from "../../assets/Auth12.webp";
+import Auth13 from "../../assets/Auth13.webp";
+import Auth14 from "../../assets/Auth14.webp";
 
 const DEFAULT_IMAGES = [
   { src: Auth1, caption: "Cover — A Birds Eye View" },
@@ -13,6 +22,15 @@ const DEFAULT_IMAGES = [
   { src: Auth3, caption: "Health Scheme & Reimbursements" },
   { src: Auth4, caption: "Disease Coverage & Education Scheme" },
   { src: Auth5, caption: "Social Security & Guidelines" },
+  { src: Auth6, caption: "Special Medical Financial Assistance" },
+  { src: Auth7, caption: "Educational Grant Details" },
+  { src: Auth8, caption: "Housing Scheme & Subsidy" },
+  { src: Auth9, caption: "Maternity & Family Planning Benefits" },
+  { src: Auth10, caption: "Application Process & Forms" },
+  { src: Auth11, caption: "Eligibility Criteria & Terms" },
+  { src: Auth12, caption: "Identity Card Issuance Rules" },
+  { src: Auth13, caption: "Regional Welfare Offices Network" },
+  { src: Auth14, caption: "Important Contacts & Helpdesk" },
 ];
 
 const highlights = [

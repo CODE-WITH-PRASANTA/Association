@@ -2,6 +2,9 @@ import React, { useRef, useState } from "react";
 import "./Abouthome.css";
 
 import HeroImage from "../../assets/Cine (1).webp";
+import logo1 from "../../assets/logo1.webp";
+import logo2 from "../../assets/logo2.webp";
+
 
 const credentials = [
   { label: "Reference No.", value: "AICWA/118/2021" },
@@ -119,15 +122,39 @@ const Abouthome = ({ src = HeroImage }) => {
             ))}
           </ul>
 
-          <div className="abouthome__signature">
-            <div className="abouthome__signature-line" />
-            <div className="abouthome__signature-meta">
-              <span className="abouthome__signature-name">
-                Er. Suresh Shyamlal Gupta
-              </span>
-              <span className="abouthome__signature-role">
-                President, AICWA
-              </span>
+         <div className="abouthome__signatures-wrapper">
+            {/* First Signature Section */}
+            <div className="abouthome__signature">
+              <img 
+                src={logo1} 
+                alt="Er. Suresh Shyamlal Gupta" 
+                className="abouthome__signature-img" 
+              />
+              <div className="abouthome__signature-meta">
+                <span className="abouthome__signature-name">
+                 Dr. Purna Chandra Behera
+                </span>
+                <span className="abouthome__signature-role">
+                  Founder & Secretary 
+                </span>
+              </div>
+            </div>
+
+            {/* Second Signature Section */}
+            <div className="abouthome__signature">
+              <img 
+                src={logo2} 
+                alt="Second Person Name" 
+                className="abouthome__signature-img" 
+              />
+              <div className="abouthome__signature-meta">
+                <span className="abouthome__signature-name">
+                 Ashrumochan Mohanty
+                </span>
+                <span className="abouthome__signature-role">
+                   President
+                </span>
+              </div>
             </div>
           </div>
         </div>

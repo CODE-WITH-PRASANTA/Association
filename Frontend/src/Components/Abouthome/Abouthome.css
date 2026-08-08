@@ -397,20 +397,29 @@
   color: var(--paper);
 }
 
-.abouthome__signature {
+/* Wrapper to display multiple signatures side-by-side or stacked */
+.abouthome__signatures-wrapper {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(241, 205, 126, 0.18);
 }
 
-.abouthome__signature-line {
+.abouthome__signature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Image styling for imported image */
+.abouthome__signature-img {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: linear-gradient(140deg, var(--gold-bright), var(--maroon));
+  object-fit: cover;
   flex-shrink: 0;
+  border: 1px solid rgba(241, 205, 126, 0.3);
 }
 
 .abouthome__signature-meta {
