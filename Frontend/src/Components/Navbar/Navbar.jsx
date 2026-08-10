@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-import LeftLogo from "../../assets/logo-1.png";
+import LeftLogo from "../../assets/mainlogo.webp";
 import RightLogo from "../../assets/ManLogo.png"; 
 
 const Navbar = () => {

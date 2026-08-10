@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 
 import "./Footer.css";
-import Logo from "../../assets/logo-3.png"; // Import Your Logo
+import Logo from "../../assets/mainlogo.webp"; // Import Your Logo
 
 const Footer = () => {
   const scrollTop = () => {
