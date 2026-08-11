@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
+  FaWhatsapp,
   FaYoutube,
   FaPhoneAlt,
   FaEnvelope,
@@ -24,13 +22,9 @@ const Footer = () => {
 
   return (
     <footer className="Footer">
-
       <div className="Footer-container">
-
         {/* Left */}
-
         <div className="Footer-about">
-
           <img src={Logo} alt="logo" className="Footer-logo" />
 
           <p>
@@ -40,31 +34,41 @@ const Footer = () => {
           </p>
 
           <div className="Footer-socials">
-
-            <a href="/">
-              <FaFacebookF />
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/919937468228"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="Footer-social-whatsapp"
+            >
+              <FaWhatsapp />
             </a>
 
-            <a href="/">
-              <FaInstagram />
+            {/* Calling */}
+            <a
+              href="tel:+919937468228"
+              aria-label="Call Us"
+              className="Footer-social-call"
+            >
+              <FaPhoneAlt />
             </a>
 
-            <a href="/">
-              <FaLinkedinIn />
-            </a>
-
-            <a href="/">
+            {/* YouTube Channel */}
+            <a
+              href="https://www.youtube.com/@nanditacreation-h8s"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube Channel"
+              className="Footer-social-youtube"
+            >
               <FaYoutube />
             </a>
-
           </div>
-
         </div>
 
         {/* Quick Links */}
-
         <div className="Footer-links">
-
           <h3>Quick Links</h3>
 
           <Link to="/">Home</Link>
@@ -72,13 +76,10 @@ const Footer = () => {
           <Link to="/association">Association</Link>
           <Link to="/achievement">Achievement</Link>
           <Link to="/gallery">Gallery</Link>
-
         </div>
 
-        {/* Useful */}
-
+        {/* Useful Links */}
         <div className="Footer-links">
-
           <h3>Useful Links</h3>
 
           <Link to="/awards">Awards</Link>
@@ -86,51 +87,42 @@ const Footer = () => {
           <Link to="/contact">Contact</Link>
           <Link to="/buy-now">Buy Now</Link>
           <Link to="/">Privacy Policy</Link>
-
         </div>
 
         {/* Contact */}
-
         <div className="Footer-contact">
-
           <h3>Contact Us</h3>
 
           <p>
             <FaMapMarkerAlt />
-            At-Sanabad, P.O.-Pichukuli, Tahasil-Begunia, District-Khordha, Odisha - 752064, India.
+            At-Sanabad, P.O.-Pichukuli, Tahasil-Begunia, District-Khordha,
+            Odisha - 752064, India.
           </p>
 
           <p>
             <FaPhoneAlt />
-           +91 99374 68228
+            <a href="tel:+919937468228" className="Footer-contact-link">
+              +91 99374 68228
+            </a>
           </p>
 
           <p>
             <FaEnvelope />
-            ocwa@yahoo. com
+            <a href="mailto:ocwa@yahoo.com" className="Footer-contact-link">
+              ocwa@yahoo.com
+            </a>
           </p>
-
         </div>
-
       </div>
 
       {/* Bottom */}
-
       <div className="Footer-bottom">
+        <p>© 2026 Developed by PR WEBSTOCK</p>
 
-        <p>
-         © 2026 Developed by PR WEBSTOCK
-        </p>
-
-        <button
-          className="Footer-scrollTop"
-          onClick={scrollTop}
-        >
+        <button className="Footer-scrollTop" onClick={scrollTop} aria-label="Scroll to top">
           <FaArrowUp />
         </button>
-
       </div>
-
     </footer>
   );
 };

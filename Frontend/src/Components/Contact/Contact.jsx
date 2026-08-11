@@ -28,15 +28,15 @@ const Contact = ({
   name = 'Nevine Acotanza',
   role = 'Chief Operating Officer',
   bio = 'I am available for collaborations across the industry. Reach out through the desk below or connect directly on set.',
-  phone = '+01 234 567 890',
+  phone = '+91 99374 68228',
   email = 'admin@aicwa.org',
   image = '',
   socials = {
-    facebook: '#',
-    linkedin: '#',
-    instagram: '#',
+    whatsapp: 'https://wa.me/9937468228',
+    call: 'tel:+01234567890',
+    youtube: 'https://www.youtube.com/@nanditacreation-h8s',
   },
-  onSubmitMessage, // optional: async (formData) => void — plug in a real API/EmailJS call here
+  onSubmitMessage,
 }) => {
   const frameRef = useRef(null)
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 })
@@ -100,7 +100,6 @@ const Contact = ({
       if (onSubmitMessage) {
         await onSubmitMessage(form)
       } else {
-        // No backend wired up yet — simulate the round trip.
         await new Promise((resolve) => setTimeout(resolve, 1100))
       }
       setStatus('sent')
@@ -209,25 +208,50 @@ const Contact = ({
             </ul>
 
             <div className="contact__socials">
-              <p className="contact__socials-label">Find With Me</p>
+              <p className="contact__socials-label">Connect With Me</p>
               <div className="contact__socials-row">
-                <a className="contact__social-link" href={socials.facebook} aria-label="Facebook">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M13.5 21v-7.6h2.6l.4-3h-3v-1.9c0-.9.2-1.5 1.5-1.5H16.6V4.1C16.3 4 15.3 4 14.2 4c-2.4 0-4 1.4-4 4v2.4H7.6v3h2.6V21h3.3Z" />
-                  </svg>
-                </a>
-                <a className="contact__social-link" href={socials.linkedin} aria-label="LinkedIn">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M6.9 8.6H3.9V20h3V8.6ZM5.4 4a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6ZM20.1 20h-3v-5.9c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V20h-3V8.6h2.9v1.6h.1c.4-.8 1.5-1.6 3-1.6 3.2 0 3.8 2.1 3.8 4.8V20Z" />
-                  </svg>
-                </a>
-                <a className="contact__social-link" href={socials.instagram} aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.5" />
-                    <circle cx="12" cy="12" r="3.6" stroke="currentColor" strokeWidth="1.5" />
-                    <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
-                  </svg>
-                </a>
+                {/* WhatsApp */}
+                {socials.whatsapp && (
+                  <a
+                    className="contact__social-link contact__social-link--whatsapp"
+                    href={socials.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.764.459 3.486 1.333 5.002L2 22l5.129-1.343a9.98 9.98 0 0 0 4.883 1.28h.004c5.506 0 9.99-4.478 9.99-9.985 0-2.667-1.038-5.174-2.924-7.06A9.92 9.92 0 0 0 12.012 2zm0 18.286h-.003a8.3 8.3 0 0 1-4.237-1.164l-.304-.18-3.148.824.84-3.067-.198-.315a8.29 8.29 0 0 1-1.272-4.398c0-4.577 3.724-8.3 8.302-8.3 2.217 0 4.301.864 5.867 2.43 1.567 1.567 2.429 3.651 2.428 5.868 0 4.578-3.724 8.302-8.285 8.302zm4.551-6.216c-.25-.125-1.478-.729-1.707-.812-.229-.084-.396-.125-.562.125-.167.25-.646.812-.792.979-.146.167-.292.188-.542.063a6.85 6.85 0 0 1-2.01-1.238 7.55 7.55 0 0 1-1.392-1.733c-.146-.25-.015-.385.11-.509.112-.112.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.021-.438-.063-.125-.563-1.354-.771-1.854-.203-.487-.41-.421-.563-.429l-.48-.008c-.166 0-.437.063-.666.313-.229.25-.875.854-.875 2.083 0 1.229.896 2.417 1.02 2.583.125.167 1.763 2.693 4.272 3.776.597.257 1.064.411 1.428.526.6.19 1.146.163 1.577.099.48-.071 1.478-.604 1.687-1.188.208-.583.208-1.083.146-1.188-.063-.104-.229-.167-.479-.292z"/>
+                    </svg>
+                  </a>
+                )}
+
+                {/* Direct Call */}
+                {socials.call && (
+                  <a
+                    className="contact__social-link contact__social-link--call"
+                    href={socials.call}
+                    aria-label="Call Direct"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </a>
+                )}
+
+                {/* YouTube */}
+                {socials.youtube && (
+                  <a
+                    className="contact__social-link contact__social-link--youtube"
+                    href={socials.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube Channel"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </a>
+                )}
               </div>
             </div>
           </div>
