@@ -1,43 +1,80 @@
-/* --- Core Navbar Reset & Base --- */
+/* --- Core Navbar Reset & Base (Deep Slate Cinematic Theme) --- */
 .custom-navbar {
   width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background: #0f172a; /* Deep Royal Navy / Charcoal */
+  border-bottom: 2px solid rgba(217, 119, 6, 0.3); /* Metallic Amber Accent line */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   position: sticky;
   top: 0;
   z-index: 1000;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  padding: 12px 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 10px 0;
 }
 
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
 
-/* --- Logo Styling --- */
+/* --- Professional Logo Badge Framing --- */
+.navbar-logo-left {
+  display: flex;
+  align-items: center;
+}
+
+/* White/Light pill badge around left logo to match any logo cutout flawlessly */
+.logo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 5px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.logo-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+}
+
 .navbar-logo-left img {
-  height: 55px;
-  width: auto;
+  height: 70px; /* Increased from 44px (adjust higher/lower if needed) */
+  width:  100px;
   object-fit: contain;
   display: block;
 }
 
-.navbar-logo-right img {
-  height: 52px;
-  width: 52px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1.5px solid #dfba49;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.navbar-logo-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* --- Desktop Nav Links Styling --- */
+.navbar-logo-right img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.navbar-logo-right img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.6);
+}
+
+/* --- Links & Typography --- */
 .navbar-links {
   display: flex;
   list-style: none;
@@ -49,102 +86,106 @@
 
 .nav-item {
   text-decoration: none;
-  color: #000000;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.5px;
+  color: #e2e8f0; /* Soft contrast white */
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.7px;
   position: relative;
   padding: 8px 0;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
-/* Premium underline design */
+/* Golden Underline Indicator */
 .nav-item::after {
   content: '';
   position: absolute;
   width: 0;
-  height: 3px;
+  height: 2.5px;
   bottom: -2px;
   left: 0;
-  background-color: #dfba49; 
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
   border-radius: 2px;
+  transition: width 0.25s ease;
 }
 
 .nav-item:hover {
-  color: #dfba49;
+  color: #fbbf24;
 }
 
-.nav-item:hover::after, 
+.nav-item:hover::after,
 .active-link::after {
   width: 100%;
 }
 
 .active-link {
-  color: #dfba49;
+  color: #f59e0b;
+  font-weight: 700;
 }
 
-/* --- Right Side UI Group --- */
+/* --- Right Side Control & Contact Button --- */
 .navbar-right-group {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
-/* Premium Styling for Contact Button */
 .navbar-contact-btn {
   text-decoration: none;
-  background: linear-gradient(135deg, #e7c86e 0%, #d4af37 100%);
-  color: #111111;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0f172a;
   font-weight: 700;
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-size: 14px;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
-  transition: all 0.3s ease;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-size: 13.5px;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+  transition: all 0.25s ease;
   text-align: center;
 }
 
 .navbar-contact-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
 }
 
 .mobile-contact-li {
   display: none;
 }
 
-/* --- Responsive Hamburger Icon Layout --- */
+/* --- Mobile Menu Icon --- */
 .hamburger-menu {
   display: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   z-index: 1001;
-  padding: 10px;
+  padding: 6px;
 }
 
 .hamburger-menu .bar {
-  width: 24px;
+  width: 25px;
   height: 2.5px;
-  background-color: #111111;
+  background-color: #f8fafc;
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
-/* --- Media Queries For Perfect Mobile View --- */
-@media (max-width: 1100px) {
-  .navbar-links { gap: 14px; }
-  .nav-item { font-size: 13px; }
+/* --- Media Queries --- */
+@media (max-width: 1200px) {
+  .navbar-links {
+    gap: 16px;
+  }
+  .nav-item {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 992px) {
   .custom-navbar {
-    padding: 14px 0;
+    padding: 10px 0;
   }
 
-  /* Keeps Left Logo on Left, Right Profile Logo on Right, Hamburger in center */
   .navbar-logo-left {
     order: 1;
   }
@@ -162,28 +203,29 @@
   }
 
   .desktop-contact-btn {
-    display: none; /* Removed from header row on mobile views */
+    display: none;
   }
 
-  /* Full Screen Dropdown Drawer Menu matching your design precisely */
+  /* Responsive Mobile Dark Drawer */
   .navbar-links {
     position: fixed;
-    top: 50px; /* Adjust based exactly on your actual header height */
+    top: 68px;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #0f172a;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 30px 24px;
-    gap: 28px;
+    gap: 20px;
     box-sizing: border-box;
-    transition: all 0.35s ease-in-out;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 
-  /* Opened Responsive State */
   .navbar-links.mobile-open {
     opacity: 1;
     visibility: visible;
@@ -191,44 +233,36 @@
   }
 
   .nav-item {
-    font-size: 18px;
-    font-weight: 700;
-    width: fit-content;
+    font-size: 15px;
     padding: 4px 0;
   }
 
-  .nav-item::after {
-    height: 2.5px;
-  }
-
-  /* Mobile Contact Button Formatting */
   .mobile-contact-li {
     display: block;
     width: 100%;
-    margin-top: auto; /* Pushes the contact button to the absolute bottom of the screen */
-    padding-bottom: 20px;
+    max-width: 260px;
+    margin-top: 10px;
   }
 
   .mobile-contact-btn {
     display: block;
     width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    border-radius: 30px;
-    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
   }
 
-  /* Smooth Morph Animation: Hamburger line menu to accurate (X) shape */
+  /* Hamburger to Cross (X) Animation */
   .hamburger-menu.active .bar:nth-child(1) {
-    transform: translateY(8.5px) rotate(45deg);
+    transform: translateY(7.5px) rotate(45deg);
+    background-color: #f59e0b;
   }
 
   .hamburger-menu.active .bar:nth-child(2) {
     opacity: 0;
-    transform: translateX(-10px);
   }
 
   .hamburger-menu.active .bar:nth-child(3) {
-    transform: translateY(-8.5px) rotate(-45deg);
+    transform: translateY(-7.5px) rotate(-45deg);
+    background-color: #f59e0b;
   }
 }

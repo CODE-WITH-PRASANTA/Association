@@ -212,6 +212,19 @@
   box-shadow: 0 18px 35px rgba(255, 1, 79, .35);
 }
 
+
+.Footer-developer-link {
+  color: #ff014f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.Footer-developer-link:hover {
+  text-decoration: underline;
+  color: #d90040;
+}
+
 /*==============================*/
 
 @media(max-width: 1100px) {

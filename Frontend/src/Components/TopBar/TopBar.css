@@ -258,31 +258,35 @@
 }
 
 /* =========================================================
-   Signature detail — film-strip sprocket edge
+   Clean & Minimal Divider Line (Replaces heavy sprockets)
 ========================================================= */
 .topbar__sprockets {
   position: relative;
-  z-index: 2;
-  height: 6px;
+  z-index: 5;
+  height: 2px;
   width: 100%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      var(--tb-bg-3) 0px,
-      var(--tb-bg-3) 10px,
-      transparent 10px,
-      transparent 20px
-    );
-  -webkit-mask-image: radial-gradient(circle at 5px 3px, transparent 2.1px, black 2.3px);
-  mask-image: radial-gradient(circle at 5px 3px, transparent 2.1px, black 2.3px);
-  -webkit-mask-size: 20px 6px;
-  mask-size: 20px 6px;
-  -webkit-mask-repeat: repeat-x;
-  mask-repeat: repeat-x;
-  background-color: var(--tb-gold-deep);
-  opacity: 0.55;
+  /* Metallic gold gradient transition */
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 106, 0) 0%,
+    rgba(212, 175, 106, 0.4) 15%,
+    rgba(244, 223, 160, 0.85) 50%,
+    rgba(212, 175, 106, 0.4) 85%,
+    rgba(212, 175, 106, 0) 100%
+  );
+  box-shadow: 0 1px 8px rgba(212, 175, 106, 0.25);
 }
 
+/* Secondary dark accent line for depth */
+.topbar__sprockets::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.6);
+}
 /* =========================================================
    Responsive
 ========================================================= */

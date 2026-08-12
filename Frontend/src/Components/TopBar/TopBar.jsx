@@ -53,13 +53,13 @@ const TopBar = () => {
           <li className="topbar__contact-item">
             <a
               className="topbar__contact-link"
-              href="mailto:ocwa@yahoo. com"
+              href="mailto:ocwa@yahoo.com"
             >
               <span className="topbar__contact-icon">
                 <Mail size={14} strokeWidth={2.2} />
               </span>
               <span className="topbar__contact-text">
-                ocwa@yahoo. com
+                ocwa@yahoo.com
               </span>
             </a>
           </li>

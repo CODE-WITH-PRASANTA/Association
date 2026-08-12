@@ -117,7 +117,17 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="Footer-bottom">
-        <p>© 2026 Developed by PR WEBSTOCK</p>
+        <p>
+          © 2026 Developed by{" "}
+          <a
+            href="https://prwebstock.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="Footer-developer-link"
+          >
+            PR WEBSTOCK
+          </a>
+        </p>
 
         <button className="Footer-scrollTop" onClick={scrollTop} aria-label="Scroll to top">
           <FaArrowUp />

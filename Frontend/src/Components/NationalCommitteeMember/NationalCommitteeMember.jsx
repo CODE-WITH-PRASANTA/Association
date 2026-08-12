@@ -3,7 +3,7 @@ import API, { IMG_URL } from "../../api/axios";
 import './NationalCommitteeMember.css';
 
 // 1. Import your saved photo file here
-import presidentPhoto from '../../assets/main.jpeg'; 
+import presidentPhoto from '../../assets/logo1.webp'; 
 
 const NationalCommitteeMember = () => {
   const [members, setMembers] = useState([]);
@@ -50,15 +50,15 @@ const NationalCommitteeMember = () => {
               className="presidentImgProfile" 
             />
           </div>
-          <span className="presidentBadgeSeal">President</span>
+          <span className="presidentBadgeSeal">Founder & Secretary</span>
         </div>
         <div className="presidentLabelMeta">
-          <div className="presDesignation">President, OCWA</div>
+          <div className="presDesignation">Founder, OCWA</div>
           <div className="presContactNum">+91 99374 68228</div>
         </div>
 
         <h2 className="presidentFullIdentity">
-          ER. SURESH SHYAMLAL GUPTA <br />
+          Dr. Purna Chandra Behera <br />
           <span className="subTitleOffice">
             EMPLOYEES REPRESENTATIVE FILM, T.V. <br />
             SERIAL, FIELD WORKERS &amp; ARTISTS <br />
