@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Navbar.css';
 
 import LeftLogo from "../../assets/mainlogo.webp";
-import RightLogo from "../../assets/Logo1.webp"; 
+import RightLogo from "../../assets/logo1.webp"; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
